@@ -1,0 +1,1234 @@
+
+        var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var teamspace;
+(function (teamspace) {
+    var auth;
+    (function (auth) {
+        /**
+         * WARNING: If you update this file you need to keep in mind that this file is compiled and inserting into Authstrap.html.
+         * Currently this file is served from local disc which is different from all other resources. Therefore be sure your change
+         * is backwards compat with the FE bits.
+         */
+        var CommonFrontDoorType;
+        (function (CommonFrontDoorType) {
+            // Not enabled
+            CommonFrontDoorType["None"] = "none";
+            // The primary site
+            CommonFrontDoorType["Primary"] = "primary";
+            // The secondary site
+            CommonFrontDoorType["Secondary"] = "secondary";
+        })(CommonFrontDoorType || (CommonFrontDoorType = {}));
+        var AuthStrapMsal = /** @class */ (function () {
+            // tslint:disable-next-line: no-local-storage
+            function AuthStrapMsal(uap, clientId, rootUrl, redirectUrl, $window, console, document, lastLocationHashName, exceptionRoutes, alternateSite, commonFrontDoor, instanceBase, audience, showErrorOuter, feCookieName, localStorage, sessionStorage, secureCookie, enableCookieStore, signInStateCookieName, enableGuestAccess, consumerAuthzResource, consumerMTResource, tokenRenewalOffsetSeconds, extraQSPs) {
+                this.uap = uap;
+                this.clientId = clientId;
+                this.rootUrl = rootUrl;
+                this.redirectUrl = redirectUrl;
+                this.$window = $window;
+                this.console = console;
+                this.document = document;
+                this.lastLocationHashName = lastLocationHashName;
+                this.exceptionRoutes = exceptionRoutes;
+                this.alternateSite = alternateSite;
+                this.instanceBase = instanceBase;
+                this.showErrorOuter = showErrorOuter;
+                this.feCookieName = feCookieName;
+                this.localStorage = localStorage;
+                this.sessionStorage = sessionStorage;
+                this.secureCookie = secureCookie;
+                this.enableCookieStore = enableCookieStore;
+                this.signInStateCookieName = signInStateCookieName;
+                this.enableGuestAccess = enableGuestAccess;
+                this.consumerAuthzResource = consumerAuthzResource;
+                this.consumerMTResource = consumerMTResource;
+                this.tokenRenewalOffsetSeconds = tokenRenewalOffsetSeconds;
+                this.commonFrontDoorType = CommonFrontDoorType.None;
+                this.extraQueryParameters = undefined;
+                this.redirectCallbackHasBeenSet = false;
+                this.reentrantHandleWindowActive = false;
+                // Normalize to "use 'consumers' if audience is <consumersTenantId>" model
+                this.audience = this.convertToTenantIdWithConsumers(audience);
+                this.isConsumersSite = audience === 'consumers';
+                if (alternateSite) {
+                    if (commonFrontDoor === 'primary') {
+                        this.commonFrontDoorType = CommonFrontDoorType.Primary;
+                    }
+                    else if (commonFrontDoor === 'secondary') {
+                        this.commonFrontDoorType = CommonFrontDoorType.Secondary;
+                    }
+                }
+                // Configured (in authstrap) QSPs
+                this.applyExtraQSPs(extraQSPs);
+                //
+                // Further customisation:
+                // "auth" QSP and associated "DesiredAuth" cookie are mostly handled by PDS, driving what authstrap is
+                // executed and what app id is used.
+                // In addition, the current authstrap supports additional knobs for non default configurations, stored in an expandable json
+                //  - "safe rollout" guid: optional guid for a QSP based safe rollout, appended to all requests
+                //  - "no common front door": disables commmon front door
+                // These knobs can be passed through a QSP ('authoptions') and they're persisted in an authstrap-controlled cookie ('DesiredAuthOptions')
+                // Authstrap tries its best to keep 'DesiredAuth' (usually set by PDS) and 'DesiredAuthOptions' (maintained by authstrap) consistent
+                //
+                // Read "auth" QSP. Whoever passes "auth" is also responsible for passing "authoptions"
+                var authQsp = this.getQueryParamByName(document.location.href, AuthStrapMsal.authQsp);
+                if (authQsp) {
+                    // Read "authoptions" QSP if present
+                    var authOptionsQsp = this.getQueryParamByName(document.location.href, AuthStrapMsal.authOptionsQsp);
+                    if (authOptionsQsp !== null) {
+                        // Save to cookie. Validation is coming later below
+                        if (authOptionsQsp) {
+                            this.updateAuthCookie(AuthStrapMsal.authOptionsCookieName, authOptionsQsp);
+                        }
+                        else {
+                            this.updateAuthCookie(AuthStrapMsal.authOptionsCookieName, null);
+                        }
+                    }
+                }
+                // Read auth option from cookie
+                this.authOption = this.getAuthOption(AuthStrapMsal.authCookieName);
+                // Read auth options from cookie
+                var authOptionsObject = this.getAuthOption(AuthStrapMsal.authOptionsCookieName);
+                if (authOptionsObject) {
+                    // Options Validation
+                    var authOptionsValid = false;
+                    // Is non default option
+                    if (this.authOption) {
+                        // Is JSON parsable
+                        try {
+                            var authOptions = JSON.parse(authOptionsObject);
+                            // Is auth field same as authOption (consistency check)
+                            if (authOptions.auth === this.authOption) {
+                                if (authOptions.extra) {
+                                    this.applyExtraQSPs(authOptions.extra);
+                                }
+                                // Save for telemetry
+                                this.authOptionExtended = encodeURIComponent(authOptionsObject);
+                                authOptionsValid = true;
+                            }
+                        }
+                        catch (jsonEx) {
+                            this.tryErrorLog('Options parsing error');
+                        }
+                    }
+                    if (!authOptionsValid) {
+                        this.updateAuthCookie(AuthStrapMsal.authOptionsCookieName, null);
+                    }
+                }
+                // Force "no common front door" for msal_dev1
+                if (this.authOption === 'msal_dev1') {
+                    this.commonFrontDoorType = CommonFrontDoorType.None;
+                }
+            }
+            AuthStrapMsal.prototype.handleWindow = function () {
+                // There's no need to call an equivalent to <adal auth context>.handleWindowCallback since that's taken care of by the constructor of UserAgentApplication itself
+                var _this = this;
+                // If the context is an iframe our job is done as our source is loaded. This
+                // will relay the token back to the caller.
+                if (this.isInIFrame()) {
+                    return;
+                }
+                try {
+                    this.tryWarnLog('Main handleWindow');
+                    this.tryWarnLog("Environment: audience: " + this.audience + ", common front door: " + this.commonFrontDoorType);
+                    if (this.getLoginError()) {
+                        this.tryErrorLog("Authorization error: " + this.getLoginError());
+                    }
+                    if (!this.redirectCallbackHasBeenSet) {
+                        // Capture errors happening in interactive modes
+                        this.uap.handleRedirectCallback(function (authErr, response) {
+                            if (authErr) {
+                                if ((typeof Msal !== 'undefined') &&
+                                    (authErr instanceof Msal.AuthError) &&
+                                    AuthStrapMsal.errorCodesToIgnore.includes(authErr.errorCode)) {
+                                    _this.tryErrorLog("Error in callback (" + authErr.errorCode + "), ignoring.");
+                                }
+                                else {
+                                    _this.showError('callback', authErr);
+                                    return;
+                                }
+                            }
+                            if (_this.redirectCallbackHasBeenSet) {
+                                // Callback coming after it has been set.
+                                // One known scenario is the ADAL SSO. It is implemented internally by using an AcquireTokenSilent, with the completion
+                                // delivered asynchronously with regard to "handleWindow"
+                                if (!_this.reentrantHandleWindowActive) {
+                                    _this.reentrantHandleWindowActive = true;
+                                    _this.tryWarnLog('Completion deferred to handleWindow');
+                                    _this.handleWindow();
+                                    _this.reentrantHandleWindowActive = false;
+                                }
+                                else {
+                                    // should never happen
+                                    _this.tryErrorLog("Callback too reentrant, ignoring.");
+                                }
+                            }
+                        });
+                    }
+                    this.redirectCallbackHasBeenSet = true;
+                    //
+                    // Extract the current state (cached account) and various supported QSPs that will drive the rest of the decisions
+                    //
+                    // Get currently signed in account, if any (could be expired)
+                    var account_1 = this.uap.getAccount();
+                    if (account_1) {
+                        if (account_1 === null || account_1 === void 0 ? void 0 : account_1.sid) {
+                            account_1.sid = undefined;
+                            this.tryWarnLog('set account sid undefined');
+                        }
+                        try {
+                            this.localStorage.setItem(AuthStrapMsal.msalActiveUserProfile, JSON.stringify(account_1.idTokenClaims));
+                        }
+                        catch (e) {
+                            this.tryWarnLog('unable to set active user profile');
+                        }
+                    }
+                    // Get tenant from query string parameter
+                    var tenant_1 = this.getTenantQueryParam(this.document.location.href);
+                    // Get sid from query string parameter
+                    var sid_1 = this.getQueryParamByName(this.document.location.href, AuthStrapMsal.sid);
+                    // Get login_hint from query string parameter; temporarily support the "safe" parameter as well
+                    var login_hint_safe = this.getQueryParamByName(this.document.location.href, AuthStrapMsal.loginHintSafe);
+                    var login_hint_1 = login_hint_safe || this.getQueryParamByName(this.document.location.href, AuthStrapMsal.loginHint);
+                    // Logout request
+                    var logoutRequest_1 = this.getBooleanQueryParamByName(this.document.location.href, AuthStrapMsal.logoutQsp);
+                    if (this.isAccountPresent(account_1)) {
+                        this.uap.authority = this.instanceBase + account_1.idTokenClaims.tid;
+                    }
+                    else {
+                        //
+                        // Tweak authority to "/common" if account detection is needed (this is a common front door)
+                        //
+                        if (this.commonFrontDoorType === CommonFrontDoorType.Primary ||
+                            this.commonFrontDoorType === CommonFrontDoorType.Secondary) {
+                            this.uap.authority = this.instanceBase + AuthStrapMsal.commonAudience;
+                        }
+                        else if (this.isConsumersSite) {
+                            // Tokens are saved in cache with a key that contains an authority.
+                            // That authority is derived from the authority used in request, with an aditional step of replacing "common" or "organizations" with the actual value from the "tid" claim.
+                            // Note: "consumers" is left as is, so we avoid using that authority for consistency of results.
+                            this.uap.authority = this.instanceBase + AuthStrapMsal.consumersTenantId;
+                        }
+                    }
+                    // Detect a start from root for telemetry purposes. Only works if redirection route is different
+                    if (this.rootUrl != this.redirectUrl &&
+                        this.document.location.origin + this.document.location.pathname === this.rootUrl) {
+                        if (logoutRequest_1) {
+                            this.sendTelemetry('startlogout');
+                        }
+                        else {
+                            this.sendTelemetry('start');
+                        }
+                    }
+                    //
+                    // Main part
+                    //
+                    var mainLogic_1 = function () {
+                        if (logoutRequest_1) {
+                            _this.tryWarnLog('Forced logout');
+                            // Reset any prior "redirected to TFL" hint
+                            _this.localStorage.removeItem(AuthStrapMsal.siteRedirectionHint);
+                            // Clear rollback flag, to minimize false positives
+                            _this.clearRollbackFlag();
+                            if (_this.commonFrontDoorType === CommonFrontDoorType.Secondary) {
+                                // If secondary front door, we need to sign out from both sites, to avoid the user being forced
+                                // into same account when navigating to the primary front door (due to cached account on front door)
+                                _this.handleCrossSiteSignOut();
+                            }
+                            else {
+                                _this.transferUser(false);
+                            }
+                        }
+                        else if (_this.shouldRedirectToAlternateSiteBeforeLogin(account_1, tenant_1, sid_1, login_hint_1)) {
+                            _this.handleRedirectToAlternateSite(tenant_1, sid_1, login_hint_1);
+                        }
+                        else if (_this.shouldLogInInvalidProfile(account_1, tenant_1, sid_1, login_hint_1)) {
+                            // save the url for reload once the user is logged in
+                            _this.storeLocationForNonLoggedInUser();
+                            _this.transferUser(true, _this.shouldForcePrompting(account_1, sid_1, login_hint_1), sid_1, login_hint_1);
+                        }
+                        else if (_this.shouldLogoutInvalidProfile(account_1)) {
+                            _this.transferUser(false);
+                        }
+                        else {
+                            _this.shouldRedirectToAlternateSiteAfterLogin(account_1, tenant_1, sid_1, login_hint_1).then(function (shouldRedirect) {
+                                if (shouldRedirect) {
+                                    _this.handleRedirectToAlternateSiteWithAccount(account_1, tenant_1);
+                                }
+                                else {
+                                    var redirectToIndexWithRightAudience_1 = function () {
+                                        var redirectToIndex = function (a) {
+                                            _this.handleRedirect(a);
+                                        };
+                                        if (_this.shouldNarrowDownAudience(account_1)) {
+                                            _this.narrowDownAudienceUsingRedirect(account_1);
+                                        }
+                                        else {
+                                            redirectToIndex(account_1);
+                                        }
+                                    };
+                                    _this.shouldDoPhoneAccrual(account_1).then(function (phoneAccrualNeeded) {
+                                        if (phoneAccrualNeeded) {
+                                            _this.handlePhoneAccrual(account_1);
+                                        }
+                                        else {
+                                            redirectToIndexWithRightAudience_1();
+                                        }
+                                    }).catch(function (err) {
+                                        _this.showError('phoneaccrual', err);
+                                    });
+                                }
+                            }).catch(function (err) {
+                                _this.showError('shouldredirect', err);
+                            });
+                        }
+                    };
+                    if (this.shouldRefreshCachedFiles()) {
+                        this.refreshCachedFiles().then(function () {
+                            mainLogic_1();
+                        }).catch(function (err) {
+                            _this.showError('refresh', err);
+                        });
+                    }
+                    else {
+                        mainLogic_1();
+                    }
+                }
+                catch (e) {
+                    this.showError('main', e);
+                }
+            };
+            AuthStrapMsal.prototype.isInIFrame = function () {
+                try {
+                    return this.$window.self !== this.$window.top;
+                }
+                catch (e) {
+                    this.showError('iniframe', e);
+                    return true;
+                }
+            };
+            AuthStrapMsal.prototype.getQueryParamByName = function (url, name) {
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex.exec(url);
+                if (!results) {
+                    return null;
+                }
+                if (!results[2]) {
+                    return '';
+                }
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            };
+            AuthStrapMsal.prototype.getTenantQueryParam = function (url) {
+                var tenant = this.getQueryParamByName(url, AuthStrapMsal.tenantId);
+                if (!tenant) {
+                    return tenant;
+                }
+                return this.convertToTenantId(tenant);
+            };
+            AuthStrapMsal.prototype.getBooleanQueryParamByName = function (url, name) {
+                var boolValue = this.getQueryParamByName(url, name);
+                return !!boolValue && boolValue.toLowerCase() === 'true';
+            };
+            AuthStrapMsal.prototype.convertToTenantIdWithConsumers = function (tenantId) {
+                tenantId = tenantId.toLowerCase();
+                // "consumers" is used instead of the explicit consumersTenantId
+                if (tenantId === AuthStrapMsal.consumersTenantId) {
+                    return AuthStrapMsal.consumersAudience;
+                }
+                return tenantId;
+            };
+            AuthStrapMsal.prototype.convertToTenantId = function (tenantId) {
+                tenantId = tenantId.toLowerCase();
+                if (tenantId === AuthStrapMsal.consumersAudience) {
+                    return AuthStrapMsal.consumersTenantId;
+                }
+                return tenantId;
+            };
+            AuthStrapMsal.prototype.shouldRedirectToAlternateSiteBeforeLogin = function (account, tenant, sid, login_hint) {
+                if (this.commonFrontDoorType === CommonFrontDoorType.None) {
+                    // Common front door not enabled, hence there's no point to redirect
+                    return false;
+                }
+                else if (tenant &&
+                    ((this.isConsumersSite && tenant !== AuthStrapMsal.consumersTenantId) || (!this.isConsumersSite && tenant === AuthStrapMsal.consumersTenantId))) {
+                    // Tenant QSP is present and is not compatible to current site
+                    this.tryWarnLog('Incompatible tenant');
+                    return true;
+                }
+                else if (!this.isAccountPresent(account)) {
+                    // No cached account present.
+                    // Redirect if no tenant/hint is available AND common front door type is secondary
+                    var redirect = this.commonFrontDoorType === CommonFrontDoorType.Secondary && !(tenant || sid || login_hint);
+                    if (redirect) {
+                        this.tryWarnLog('Fresh sign in, delegating to common front door');
+                    }
+                    return redirect;
+                }
+            };
+            AuthStrapMsal.prototype.shouldLogInInvalidProfile = function (account, tenant, sid, login_hint) {
+                // Check account presence first
+                var invalidUserState = !this.isAccountPresent(account);
+                // Hints received in QSP take higher precendence.
+                // A locally cached account may trump them, so force a clear cache if hints not compatible
+                if (!invalidUserState &&
+                    ((sid && account.sid !== sid) ||
+                        (login_hint && account.idTokenClaims.preferred_username !== login_hint))) {
+                    this.tryWarnLog('Clearing account profile on mismatched hints');
+                    this.clearCache();
+                    invalidUserState = true;
+                }
+                if (invalidUserState) {
+                    // Case 1: no account present
+                    // Override authority if tenant parameter present
+                    if (tenant && this.isSwitchingToTenantAllowed(tenant)) {
+                        this.uap.authority = this.instanceBase + this.convertToTenantId(tenant);
+                    }
+                    this.tryWarnLog('Account profile not found');
+                }
+                else if (tenant && account.idTokenClaims.tid != tenant && this.isSwitchingToTenantAllowed(tenant)) {
+                    // Case 2: account present, but not of the required (by parameter) tenant
+                    this.tryWarnLog('Account is logged into a different tenant');
+                    // Override authority if tenant parameter present
+                    this.uap.authority = this.instanceBase + this.convertToTenantId(tenant);
+                    // Start with clean slate on Teams domain storage
+                    this.clearCache();
+                    invalidUserState = true;
+                }
+                else if (account.idTokenClaims.aud && account.idTokenClaims.aud != this.clientId) {
+                    this.tryWarnLog('Client id mismatch');
+                    // Start with clean slate on Teams domain storage
+                    this.clearCache();
+                    invalidUserState = true;
+                }
+                else if (this.profileExpiresIn(account, this.tokenRenewalOffsetSeconds)) {
+                    // Case 3: account present, but associated token expired.
+                    this.tryWarnLog('Account profile expired');
+                    invalidUserState = true;
+                }
+                else {
+                    // Check cached token consistency with user
+                    try {
+                        var cachedTokenResult = this.uap.getCachedToken({
+                            authority: this.uap.authority,
+                            scopes: [this.clientId]
+                        }, account);
+                        if (!cachedTokenResult) {
+                            this.tryErrorLog('Cached id_token missing: null result');
+                            // Force a clean slate, we may have multiple tokens (different authorities, etc.), situation we shouldn't end up in into the first place.
+                            this.clearCache();
+                            invalidUserState = true;
+                        }
+                    }
+                    catch (e) {
+                        if (e.name === 'ClientAuthError') {
+                            var authErr = e;
+                            this.tryErrorLog('Cached user id_token missing: ' + authErr.errorMessage);
+                            invalidUserState = true;
+                            // Force a clean slate
+                            this.clearCache();
+                        }
+                        else {
+                            throw e;
+                        }
+                    }
+                }
+                return invalidUserState;
+            };
+            AuthStrapMsal.prototype.isSwitchingToTenantAllowed = function (tenant) {
+                if (!tenant) {
+                    return false;
+                }
+                var allowed = false;
+                if (this.audience === AuthStrapMsal.organizationsAudience) {
+                    // If guest access enabled, allow switching to anything other than Personal tenant
+                    allowed = this.enableGuestAccess && tenant != AuthStrapMsal.consumersTenantId;
+                }
+                // Remaining cases for this.audience are:
+                // - "consumers": no change allowed, account is confined to Personal tenant
+                // - <tenantId> (theoretical): no change allowed, account is confined to that tenant
+                // - "common": not supported
+                return allowed;
+            };
+            AuthStrapMsal.prototype.shouldForcePrompting = function (account, sid, login_hint) {
+                // Some browser SSO mechanisms (Edge, for ex.) may re-sign in the user back without giving an account selection choice.
+                // Our expectation is this choice is provided when there's no pre-existing hint on client side (cached account, sid, login_hint) and
+                // when we're following a sign out (inferred from code being executed from redirectUrl)
+                var looksLikeFollowingASignOut = this.document.location.origin + this.document.location.pathname === this.redirectUrl;
+                return looksLikeFollowingASignOut && !(account || sid || login_hint);
+            };
+            AuthStrapMsal.prototype.shouldLogoutInvalidProfile = function (account) {
+                if (!account.idTokenClaims.aud) {
+                    this.tryWarnLog('Account profile type is missing aud');
+                    return true;
+                }
+                else if (account.idTokenClaims.altsecid && account.idTokenClaims.altsecid.indexOf('1:') === 0) {
+                    // Account is an MSA account in "enterprise" mode (altsecid is present and starts with "1:")
+                    // V2 tickets do have oid in this case, but fill if missing (V1 case).
+                    if (!account.idTokenClaims.oid) {
+                        account.idTokenClaims.oid = 'msaDefaultOid';
+                    }
+                    // Do not log out.
+                    return false;
+                }
+                else if (account.idTokenClaims.tid == AuthStrapMsal.consumersTenantId) {
+                    // Account is MSA personal
+                    // V2 tickets do have oid in this case, but fill if missing.
+                    if (!account.idTokenClaims.oid) {
+                        account.idTokenClaims.oid = 'msaDefaultOid';
+                    }
+                    // Do not log out.
+                    return false;
+                }
+                else {
+                    var isGuest = account.idTokenClaims.iss &&
+                        account.idTokenClaims.idp &&
+                        account.idTokenClaims.iss !== account.idTokenClaims.idp;
+                    // Unredeemed guests may not have an oid.
+                    // authenticationService will kick out the account if there's no oid, so set one now
+                    if (isGuest && !account.idTokenClaims.oid) {
+                        account.idTokenClaims.oid = 'aadDefaultOid';
+                        return false;
+                    }
+                    // Non guest access requires upn
+                    if (!isGuest && (!account.idTokenClaims.oid || !account.idTokenClaims.upn)) {
+                        this.tryWarnLog('Account profile is missing oid or upn');
+                        return true;
+                    }
+                }
+                return false;
+            };
+            AuthStrapMsal.prototype.shouldRedirectToAlternateSiteAfterLogin = function (account, tenant, sid, login_hint) {
+                var _this = this;
+                if (this.commonFrontDoorType === CommonFrontDoorType.None) {
+                    // Common front door not enabled, hence there's no point to redirect
+                    return Promise.resolve(false);
+                }
+                else if (this.commonFrontDoorType === CommonFrontDoorType.Primary) {
+                    // Common front door is primary.
+                    return this.shouldBeServedByLifeSite(account).then(function (result) {
+                        var redirect = (result !== undefined) &&
+                            ((!_this.isConsumersSite && result) // Front door is work site, and life site has to be given control
+                                ||
+                                    (_this.isConsumersSite && !result) // Front door is life site, and work site has to be given control (testing scenario)
+                            );
+                        if (redirect) {
+                            _this.tryWarnLog('Will be served by secondary site');
+                        }
+                        return Promise.resolve(redirect);
+                    });
+                }
+                else if (this.commonFrontDoorType === CommonFrontDoorType.Secondary) {
+                    // A redirection hint on primary site may land the user here even though the intention is to use a work account.
+                    // Also, user can change their mind during login flow, if they don't want to go through phone accrual, for example.
+                    // If account is MSA (and it's always in Consumers tenant), we continue in Life (and user can subsequently switch tenants there)
+                    // Else we redirect back to work site.
+                    if (account.idTokenClaims.tid !== AuthStrapMsal.consumersTenantId) {
+                        this.tryWarnLog('Will be served by primary site');
+                        return Promise.resolve(true);
+                    }
+                    else {
+                        return Promise.resolve(false);
+                    }
+                }
+                else {
+                    // All other cases, no redirection
+                    return Promise.resolve(false);
+                }
+            };
+            AuthStrapMsal.prototype.shouldBeServedByLifeSite = function (account) {
+                var _this = this;
+                // Check whether the account (by prefered_username) has been redirected to secondary site in the past.
+                // This is true if either:
+                // - A prior run of heuristic determined login has to be served by Secondary site (this saves us from running heuristic again)
+                // - User switched to Consumers tenant forcibly (this makes that choice stick from the previous tenant switching action)
+                //
+                if (account.idTokenClaims.tid === AuthStrapMsal.consumersTenantId) {
+                    this.tryWarnLog('MSA Consumer account');
+                    var redirectionHintAccount = this.localStorage.getItem(AuthStrapMsal.siteRedirectionHint);
+                    if (redirectionHintAccount && redirectionHintAccount === account.userName) {
+                        this.tryWarnLog('Redirection hint present');
+                        return Promise.resolve(!this.isConsumersSite);
+                    }
+                    // Perform heuristic if MSA Consumers account
+                    // Acquire token for Consumer MT
+                    // We narrow down to current authority to avoid authority duplicates
+                    return this.uap.acquireTokenSilent({
+                        authority: this.uap.authority,
+                        scopes: [this.consumerMTResource],
+                        extraQueryParameters: this.extraQueryParameters
+                    }).then(function (consumerMTTokenResponse) {
+                        return new Promise(function (resolve, reject) {
+                            // Use hardcoded MT Url to avoid the need to call AuthZ, which may trigger phone accrual and worsen the performance even more
+                            var getTenantsUrl = AuthStrapMsal.hardcodedConsumerMT + AuthStrapMsal.getTenantsRoute;
+                            var httpRequest = new XMLHttpRequest();
+                            httpRequest.open("GET", getTenantsUrl, true);
+                            httpRequest.setRequestHeader('authorization', 'Bearer ' + consumerMTTokenResponse.accessToken);
+                            httpRequest.setRequestHeader('x-ms-client-type', 'web');
+                            // TODO: timeout?
+                            httpRequest.onload = function () {
+                                if (httpRequest.readyState === 4) {
+                                    if (httpRequest.status === 200) {
+                                        var hasWorkFootPrint_1 = false;
+                                        var hasConsumerTenant_1 = false;
+                                        var hasRedeemedConsumerTenant_1 = false;
+                                        var tenants = null;
+                                        try {
+                                            tenants = JSON.parse(httpRequest.responseText);
+                                            tenants.forEach(function (tenant) {
+                                                if (tenant.tenantType === 'organization') {
+                                                    hasWorkFootPrint_1 = true;
+                                                }
+                                                else if (tenant.tenantType === 'consumer') {
+                                                    hasConsumerTenant_1 = true;
+                                                    if (tenant.isInvitationRedeemed) {
+                                                        hasRedeemedConsumerTenant_1 = true;
+                                                    }
+                                                }
+                                            });
+                                        }
+                                        catch (jsonEx) {
+                                            _this.tryErrorLog('Tenants parsing error');
+                                            resolve(undefined);
+                                            return;
+                                        }
+                                        _this.tryWarnLog("Tenant retrieval succeeded: work: " + (hasWorkFootPrint_1 ? 'yes' : 'no') + ", consumer: " + (hasConsumerTenant_1 ? "yes (redeemed: " + (hasRedeemedConsumerTenant_1 ? 'yes' : 'no') + ")" : 'no'));
+                                        _this.sendTelemetry("footprint&work=" + (hasWorkFootPrint_1 ? 'true' : 'false') + "&consumer=" + (hasConsumerTenant_1 ? "true&redeemed=" + (hasRedeemedConsumerTenant_1 ? 'true' : 'false') : 'false'));
+                                        if (_this.isConsumersSite) {
+                                            // Testing scenario
+                                            resolve(hasConsumerTenant_1);
+                                        }
+                                        else {
+                                            // Use Life site if consumer tenant present and no work foot print
+                                            resolve(!hasWorkFootPrint_1 && hasConsumerTenant_1);
+                                        }
+                                    }
+                                    else {
+                                        _this.tryErrorLog("Tenant retrieval returned error: " + httpRequest.status);
+                                        resolve(undefined);
+                                    }
+                                }
+                            };
+                            httpRequest.onerror = function () {
+                                _this.tryErrorLog("Tenant retrieval failed: " + httpRequest.statusText);
+                                resolve(undefined);
+                            };
+                            httpRequest.send(null);
+                        });
+                    }).catch(function (err) {
+                        _this.tryErrorLog("CMT Token retrieval failed: " + err.errorMessage);
+                        return Promise.resolve(undefined);
+                    });
+                }
+                else {
+                    this.tryWarnLog('Enterprise (AAD or MSA) account');
+                    // All other cases (OrgID, MSA in non consumer tenants), answer is no.
+                    return Promise.resolve(false);
+                }
+            };
+            /**
+             * We will use MT scope if:
+             * - the site is work type or
+             * - account is not MSA
+             */
+            AuthStrapMsal.prototype.getPhoneAccrualScopes = function (idTokenClaims) {
+                var useMTScope = !this.isConsumersSite || (idTokenClaims === null || idTokenClaims === void 0 ? void 0 : idTokenClaims.tid) !== "9188040d-6c67-4c5b-b112-36a304b66dad" /* ConsumersTenantId */;
+                return useMTScope ? ["https://api.spaces.skype.com/.default"] : [this.consumerAuthzResource];
+            };
+            AuthStrapMsal.prototype.shouldDoPhoneAccrual = function (_a) {
+                var _this = this;
+                var idTokenClaims = (_a === void 0 ? {} : _a).idTokenClaims;
+                return new Promise(function (resolve, reject) {
+                    // Try acquiring the authz token (the one with phone accrual) silently
+                    _this.uap.acquireTokenSilent({
+                        authority: _this.uap.authority,
+                        scopes: _this.getPhoneAccrualScopes(idTokenClaims),
+                        extraQueryParameters: _this.extraQueryParameters
+                    }).then(function (theToken) {
+                        // Succeeded, so phone accrual is not needed
+                        resolve(false);
+                    }).catch(function (err) {
+                        if (err.name === 'InteractionRequiredAuthError') {
+                            // phone accrual needed
+                            _this.tryWarnLog("Phone accrual needed");
+                            resolve(true);
+                        }
+                        else {
+                            _this.tryErrorLog("AuthZ Token retrieval failed: " + err.errorMessage);
+                            reject("" + err.errorMessage);
+                        }
+                    });
+                });
+            };
+            /**
+             * Acquire authz token with redirection interaction. In case of success, the next shouldDoPhoneAccrual will return false
+             */
+            AuthStrapMsal.prototype.handlePhoneAccrual = function (_a) {
+                var idTokenClaims = (_a === void 0 ? {} : _a).idTokenClaims;
+                var tokenRequest = {
+                    authority: this.uap.authority,
+                    scopes: this.getPhoneAccrualScopes(idTokenClaims),
+                    extraQueryParameters: this.extraQueryParameters
+                };
+                if (tokenRequest.scopes[0] === this.consumerAuthzResource) {
+                    this.tryWarnLog('Attempting phone accrual');
+                    this.sendTelemetry('phoneaccrual');
+                    // For TFL we use loginRedirect (rather than acquireTokenRedirect) to account for the case user changes their mind and signs in with different account.
+                    this.uap.loginRedirect(tokenRequest);
+                }
+                else {
+                    this.tryWarnLog('Attempting real name validation');
+                    this.sendTelemetry('realnamevalidation');
+                    // LoginRedirect doesn't work for Real Name Verification, we need to ask for authz access token
+                    this.uap.acquireTokenRedirect(tokenRequest);
+                }
+            };
+            AuthStrapMsal.prototype.shouldNarrowDownAudience = function (account) {
+                // We have to exchange an id_token with one with narrower audience (organizations) if:
+                // - the site is work type
+                // - account is MSA in consumers tenant
+                if (!this.isConsumersSite && account.idTokenClaims.tid === AuthStrapMsal.consumersTenantId) {
+                    this.tryWarnLog('Will narrow scope to organizations');
+                    return true;
+                }
+                return false;
+            };
+            AuthStrapMsal.prototype.narrowDownAudienceUsingRedirect = function (account) {
+                var _a;
+                var sid = undefined;
+                var loginHint = undefined;
+                if (account.sid && (((_a = account.idTokenClaims) === null || _a === void 0 ? void 0 : _a.tid) !== AuthStrapMsal.consumersTenantId)) {
+                    this.tryWarnLog('sid for transferUser set');
+                    sid = account.sid;
+                }
+                else if (account.userName) {
+                    this.tryWarnLog('loginHint for transferUser set');
+                    loginHint = account.userName;
+                }
+                this.clearCache();
+                this.uap.authority = this.instanceBase + AuthStrapMsal.organizationsAudience;
+                // NOTE: We need to do redirection for the exchange, silent acquiring just doesn't work
+                this.transferUser(true, false, sid, loginHint);
+            };
+            AuthStrapMsal.prototype.sendTelemetry = function (area) {
+                var authOptions = this.authOption ?
+                    ("&auth=" + this.authOption + "&authoptions=" + (this.authOptionExtended || '')) : '';
+                var url = this.rootUrl + "auth/mark?area=" + area + authOptions;
+                var httpRequest = new XMLHttpRequest();
+                httpRequest.open("GET", url, true);
+                httpRequest.send(null);
+            };
+            AuthStrapMsal.prototype.storeLocationForNonLoggedInUser = function () {
+                var href = window.location.href.replace(this.rootUrl, '');
+                // Remove the leading '/' if it is there in the previous url
+                // Example:
+                // original url: https://local.teams.office.com/#/calendar?meetingId=AA
+                // href: /#/calendar?meetingId=AA
+                // href after substr call : #/calendar?meetingId=AA
+                if (href.indexOf('/') === 0) {
+                    href = href.substr(1);
+                }
+                // disallow 'go' urls (if non empty) from being saved
+                if (href && this.localStorage && !this.exceptionRoutes.some(function (value) { return value && href.indexOf(value) === 0; })) {
+                    this.localStorage.setItem(AuthStrapMsal.nonLoggedInUserLocationKey, href);
+                }
+            };
+            AuthStrapMsal.prototype.handleRedirect = function (account) {
+                this.tryWarnLog('Redirecting to index');
+                if (account) {
+                    // Update the fe auth cookie with the current client ID token in
+                    // case this is a valid account and that is missing the token.
+                    // We narrow down to current authority when getting the cached token, to avoid authority duplicates
+                    this.updateFECookie(this.uap.getCachedToken({
+                        authority: this.uap.authority,
+                        scopes: [this.clientId]
+                    }, account).idToken.rawIdToken);
+                    this.updatePreSignInCookie("true");
+                }
+                // Reset any prior "redirected to TFL" hint
+                if (this.commonFrontDoorType === CommonFrontDoorType.Primary) {
+                    this.localStorage.removeItem(AuthStrapMsal.siteRedirectionHint);
+                }
+                var newLocation = this.rootUrl;
+                // Takes the user to the index page
+                newLocation += AuthStrapMsal.indexRoute;
+                var locationPath = '';
+                if (AuthStrapMsal.shouldIgnoreHashForRedirect(this.document.location.hash) &&
+                    this.document.location.search === '') {
+                    // Get stored location for the previous url from before the user logged in
+                    locationPath = this.getLocationForNonLoggedInUser();
+                    if (locationPath) {
+                        if (this.localStorage) {
+                            this.localStorage.removeItem(AuthStrapMsal.nonLoggedInUserLocationKey);
+                        }
+                        if (this.sessionStorage) {
+                            this.sessionStorage.removeItem(AuthStrapMsal.nonLoggedInUserLocationKey);
+                        }
+                    }
+                    else {
+                        // if there was no specified url, then replace it with the user's previous url from localStorage if it is available
+                        if (account) {
+                            locationPath = this.getLocationForLoggedInUser(account.idTokenClaims);
+                        }
+                    }
+                }
+                else {
+                    locationPath = this.document.location.search + this.document.location.hash;
+                }
+                // Remove QSPs with just authstrap relevancy.
+                newLocation += this.removeAuthstrapQsps(locationPath);
+                // Save extra QSPs for the auth provider in the app to use
+                if (this.localStorage) {
+                    if (this.extraQueryParameters) {
+                        this.localStorage.setItem(AuthStrapMsal.extraQSPsUsedByAuthstrap, JSON.stringify(this.extraQueryParameters));
+                    }
+                    else {
+                        this.localStorage.removeItem(AuthStrapMsal.extraQSPsUsedByAuthstrap);
+                    }
+                }
+                if (this.sessionStorage) {
+                    this.sessionStorage.setItem(AuthStrapMsal.redirect_authstrap_duration, "" + performance.now());
+                }
+                this.sendTelemetry("index");
+                // It's the app's responsibility to clear the rollback flag (loginAttemptRecord)
+                // Yet, due to backward compatibility with older apps (a temporary situation), the clearing happens here as well
+                this.clearRollbackFlag();
+                this.document.location.replace(newLocation);
+            };
+            /**
+             * Gets the url from session storage for a previously anonymous user who is now logged in.
+             * This is used for the redirection after coming back from login
+             */
+            AuthStrapMsal.prototype.getLocationForNonLoggedInUser = function () {
+                var url = '';
+                // On Edge and IE we're coming back with id_token in the hash instead of an empty hash.
+                // The below conditional corrects for that; otherwise try to load from storage
+                if (this.document.location.hash &&
+                    (this.document.location.hash.indexOf(AuthStrapMsal.idTokenString) >= 0)) {
+                    url = this.document.location.hash;
+                }
+                else if (this.localStorage) {
+                    url = this.localStorage.getItem(AuthStrapMsal.nonLoggedInUserLocationKey);
+                }
+                else if (this.sessionStorage) {
+                    url = this.sessionStorage.getItem(AuthStrapMsal.nonLoggedInUserLocationKey);
+                }
+                return url;
+            };
+            /**
+             * Gets the url hash from local storage stored for the user in previous sessions
+             */
+            AuthStrapMsal.prototype.getLocationForLoggedInUser = function (profile) {
+                var url = '';
+                var startHash = this.document.location.hash;
+                if (!startHash && this.localStorage && profile && profile.oid) {
+                    // 'ts.' is auto prefixed to the local storage keys in the normal app workflow here. Oid is used as the partition.
+                    startHash = this.localStorage.getItem('ts.' + profile.oid + '.' + this.lastLocationHashName); // with oid
+                }
+                if (startHash) {
+                    url += '#' + startHash.replace(/^#|#$/, '');
+                }
+                return url;
+            };
+            /**
+             * Check to make sure that the hash is empty or contains a token that indicates
+             * we should use this hash for redirect. Returns true if the hash is empty or
+             * contains the token.
+             */
+            AuthStrapMsal.shouldIgnoreHashForRedirect = function (hash) {
+                return (hash && (hash.indexOf(AuthStrapMsal.idTokenString) >= 0)) ||
+                    (hash === '') || (hash === '#');
+            };
+            AuthStrapMsal.prototype.transferUser = function (logUserIn, forcePrompt, sid, loginHint) {
+                var _a;
+                this.updateFECookie(null);
+                if (logUserIn) {
+                    this.tryWarnLog('Logging user in');
+                    var request = {};
+                    if (forcePrompt) {
+                        request.prompt = AuthStrapMsal.forcePromptValue;
+                    }
+                    // Support domain_hint QSP for testing purposes.
+                    // It's the caller's responsibility to avoid conflicts with sid/login_hint/etc. hints MSAL.JS uses
+                    var domainHint = this.getQueryParamByName(this.document.location.href, AuthStrapMsal.domainHint);
+                    if (domainHint) {
+                        request = __assign(__assign({}, request), { extraQueryParameters: (_a = {},
+                                _a[AuthStrapMsal.domainHint] = domainHint,
+                                _a) });
+                    }
+                    // Check sid value first
+                    if (sid) {
+                        request = __assign(__assign({}, request), { sid: sid });
+                    }
+                    else {
+                        // login_hint next
+                        if (loginHint) {
+                            request = __assign(__assign({}, request), { loginHint: loginHint });
+                        }
+                    }
+                    if (this.extraQueryParameters) {
+                        if (request.extraQueryParameters) {
+                            request.extraQueryParameters = __assign(__assign({}, this.extraQueryParameters), request.extraQueryParameters);
+                        }
+                        else {
+                            request.extraQueryParameters = this.extraQueryParameters;
+                        }
+                    }
+                    this.sendTelemetry("prelogin");
+                    // NOTE: A bug in MSAL.JS has as effect not clearing LOGIN.ERROR on new login.
+                    this.setLoginError('');
+                    this.uap.loginRedirect(request);
+                }
+                else {
+                    this.tryWarnLog('Logging user out');
+                    this.sendTelemetry("prelogout");
+                    // NOTE: currently server prompts for "Account to logout", by their (current) design.
+                    this.uap.logout();
+                }
+            };
+            AuthStrapMsal.prototype.handleCrossSiteSignOut = function () {
+                // Due to current ESTS limitations (holding the flow hostage to "you must close all browser windows" page),
+                // we follow a compromise:
+                // - we clear local caches/state as if we logged out fully
+                // - we redirect to primary front door for full signout.
+                this.tryWarnLog('Logging user out - both sites');
+                this.clearCache();
+                this.updateFECookie(null);
+                this.tryWarnLog("Redirecting to primary site");
+                this.document.location.replace("" + this.alternateSite + (this.alternateSite.indexOf('?') > -1 ? '&' : '?') + AuthStrapMsal.logoutQsp + "=true");
+            };
+            AuthStrapMsal.prototype.shouldRefreshCachedFiles = function () {
+                // PDS directs browsers to cache the /go route for some minutes. As a result, dynamically switching to a different authstrap
+                // by using a QSP is affected by the /go route bing served from browser cache, with random and bad results.
+                // We force a refresh of the cache if user explicitly passes the "auth" QSP
+                return !!this.getQueryParamByName(this.document.location.href, AuthStrapMsal.authQsp);
+            };
+            AuthStrapMsal.prototype.refreshCachedFiles = function () {
+                var _this = this;
+                // We use best effort, always resolving the promise successfully.
+                this.tryWarnLog("Refreshing cached authstrap");
+                if (typeof Request === 'undefined') {
+                    // Giving up if API not available (IE, soon to be deprecated)
+                    this.tryWarnLog("Refreshing cached unsupported");
+                    return Promise.resolve([]);
+                }
+                // PDS has already set the right DesiredAuth cookie, so the request will retrieve (and cache) the expected pages
+                var fetchGoWorker = function () {
+                    // Reload the Go page by forcing a cache reload
+                    return new Promise(function (resolve, reject) {
+                        var headers = new Headers();
+                        headers.append('x-ms-client-type', 'web');
+                        var requestInfo = {
+                            cache: "reload",
+                            credentials: 'same-origin',
+                            headers: headers
+                        };
+                        var request = new Request(_this.redirectUrl);
+                        fetch(request, requestInfo).then(function (response) {
+                            if (response.ok) {
+                                _this.tryWarnLog("Refreshing cached authstrap succeeded");
+                            }
+                            else {
+                                _this.tryWarnLog("Refreshing cached authstrap returned status " + response.status);
+                            }
+                            resolve();
+                        }).catch(function (error) {
+                            _this.tryErrorLog("Refreshing cached authstrap failed: " + error.message);
+                            resolve();
+                        });
+                    });
+                };
+                var removeIndexWorker = function () {
+                    // Remove the cached index from the SW maintained cache
+                    return new Promise(function (resolve, reject) {
+                        caches.open(AuthStrapMsal.teamsCache).then(function (cache) {
+                            cache.delete(_this.rootUrl + AuthStrapMsal.indexRoute).then(function (found) {
+                                _this.tryWarnLog("Removing cached index succeeded: (found: " + found + ")");
+                                resolve();
+                            }).catch(function (error) {
+                                _this.tryErrorLog("Removing cached index failed: " + error.message);
+                                resolve();
+                            });
+                        }).catch(function (error) {
+                            _this.tryErrorLog("Opening cache failed: " + error.message);
+                            resolve();
+                        });
+                    });
+                };
+                return Promise.all([fetchGoWorker(), removeIndexWorker()]);
+            };
+            AuthStrapMsal.prototype.updateFECookie = function (value) {
+                value = value || '';
+                if (this.enableCookieStore) {
+                    var expireDate = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000); // 5 Days
+                    this.document.cookie = this.feCookieName + "=" + value + "; expires=" + expireDate + "; path=/" + (this.secureCookie ? '; secure' : '');
+                }
+                else {
+                    this.document.cookie = this.feCookieName + "=" + value + "; path=/" + (this.secureCookie ? '; secure' : '');
+                }
+            };
+            AuthStrapMsal.prototype.updatePreSignInCookie = function (value) {
+                value = value || '';
+                var expireDate = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000); // 1 year
+                this.document.cookie = this.signInStateCookieName + "=" + value + "; expires=" + expireDate + "; path=/" + (this.secureCookie ? '; secure' : '');
+            };
+            AuthStrapMsal.prototype.updateAuthCookie = function (name, value) {
+                value = value || '';
+                if (value) {
+                    var expireDate = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000); // 1 Year
+                    this.document.cookie = name + "=" + encodeURIComponent(value) + "; expires=" + expireDate + "; path=/" + (this.secureCookie ? '; secure' : '');
+                }
+                else {
+                    this.document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + (this.secureCookie ? '; secure' : '');
+                }
+            };
+            AuthStrapMsal.prototype.profileExpiresIn = function (account, seconds) {
+                var profileExpiration = (account && account.idTokenClaims &&
+                    (account.idTokenClaims.exp ? parseInt(account.idTokenClaims.exp, 10) * 1000 : Date.now()));
+                return (profileExpiration - Date.now()) <= (1000 * seconds);
+            };
+            AuthStrapMsal.prototype.handleRedirectToAlternateSiteWithAccount = function (account, tenant) {
+                var redirect_sid = null;
+                var redirect_login_hint = null;
+                // If cached account is present and is of an MSA type (either in the consumer tenant or as a guest/freemium), we
+                // pass it as hints for the redirection target to try to do a silent login with same account
+                if (account &&
+                    account.idTokenClaims &&
+                    (account.idTokenClaims.tid === AuthStrapMsal.consumersTenantId ||
+                        (account.idTokenClaims.altsecid && account.idTokenClaims.altsecid.indexOf('1:') === 0))) {
+                    redirect_sid = account.sid;
+                    redirect_login_hint = account.userName;
+                }
+                this.handleRedirectToAlternateSite(tenant, redirect_sid, redirect_login_hint);
+            };
+            AuthStrapMsal.prototype.handleRedirectToAlternateSite = function (tenant, sid, login_hint) {
+                this.tryWarnLog("Redirecting to " + (this.commonFrontDoorType === CommonFrontDoorType.Primary ? 'secondary' : 'primary') + " site");
+                var newLocation = this.alternateSite;
+                var appendParam = function (url, name, value) { return "" + url + (url.indexOf('?') > -1 ? '&' : '?') + name + "=" + encodeURIComponent(value); };
+                // Limit the QSPs to those related to authentication.
+                if (tenant) {
+                    newLocation = appendParam(newLocation, AuthStrapMsal.tenantId, tenant);
+                }
+                if (sid) {
+                    newLocation = appendParam(newLocation, AuthStrapMsal.sid, sid);
+                }
+                else if (login_hint) {
+                    // Temporarily using a "safe" hint that's ingored by any ADAL.JS based authstrap on the target of the redirection
+                    newLocation = appendParam(newLocation, AuthStrapMsal.loginHintSafe, login_hint);
+                }
+                // A redirection to secondary site is also tracked as a hint here.
+                // This helps avoiding expensive tenant assesments for subsequent Life sign ins,
+                // and helps the "user last used Life tenant" state stick
+                if (login_hint && this.commonFrontDoorType === CommonFrontDoorType.Primary) {
+                    this.localStorage.setItem(AuthStrapMsal.siteRedirectionHint, login_hint);
+                }
+                this.sendTelemetry('alternatesite');
+                // Clear the flag maintained by the rollback mechanism, redirectiong to the other site accounts as success.
+                this.clearRollbackFlag();
+                this.document.location.replace(newLocation);
+            };
+            AuthStrapMsal.prototype.isAccountPresent = function (account) {
+                return !!(account && account.idTokenClaims);
+            };
+            AuthStrapMsal.prototype.setLoginError = function (error) {
+                this.uap.cacheStorage.setItem(AuthStrapMsal.loginErrorKey, error);
+            };
+            AuthStrapMsal.prototype.getLoginError = function () {
+                return this.uap.cacheStorage.getItem(AuthStrapMsal.loginErrorKey);
+            };
+            AuthStrapMsal.prototype.clearCache = function () {
+                // Delete MSAL.JS cache
+                this.uap.clearCache();
+                // Force clearing the account (not covered by clearing the cache).
+                // This is needed when trying to continue silently with provided hints, rather than starting fresh through redirecting
+                this.uap.account = null;
+                // Delete the "login.required" marker, there's no point on retrying anything since we're starting fresh
+                this.localStorage.removeItem(AuthStrapMsal.loginRequired);
+            };
+            AuthStrapMsal.prototype.getAuthOption = function (option) {
+                var cookies = this.document.cookie.split(';');
+                if (cookies) {
+                    var authOptionValue_1 = null;
+                    cookies.find(function (cookie) {
+                        cookie = cookie.trim();
+                        var cookieKeyValue = cookie.split('=');
+                        if (cookieKeyValue.length === 2 && cookieKeyValue[0] === option) {
+                            authOptionValue_1 = decodeURIComponent(cookieKeyValue[1]);
+                            return true;
+                        }
+                    });
+                    return authOptionValue_1;
+                }
+                return null;
+            };
+            AuthStrapMsal.prototype.removeAuthstrapQsps = function (locationPath) {
+                var hash = '';
+                var tweakedSearch = '';
+                var pathComponents = locationPath.split('#');
+                if (pathComponents.length >= 1) {
+                    // The first component is an optional search string, regardless of whether a has is present
+                    // The second component, if present, is the hash
+                    if (pathComponents.length === 2) {
+                        hash = "#" + pathComponents[1];
+                    }
+                    var search = pathComponents[0];
+                    if (search) {
+                        var qsps = search.slice(1).split('&');
+                        var filteredQsps = qsps.filter(function (value) {
+                            var qspPair = value.split('=');
+                            return qspPair.length === 2 && AuthStrapMsal.qspsToRemove.indexOf(qspPair[0]) < 0;
+                        });
+                        if (filteredQsps.length > 0) {
+                            filteredQsps.forEach(function (value, index) {
+                                tweakedSearch = "" + tweakedSearch + (index === 0 ? '?' : '&') + value;
+                            });
+                        }
+                    }
+                }
+                return tweakedSearch + hash;
+            };
+            AuthStrapMsal.prototype.applyExtraQSPs = function (qsps) {
+                var _this = this;
+                if (qsps) {
+                    var qspArray = qsps.split('&');
+                    qspArray.forEach(function (qsp) {
+                        var qspPair = qsp.split('=');
+                        if (qspPair.length === 2) {
+                            if (!_this.extraQueryParameters) {
+                                _this.extraQueryParameters = {};
+                            }
+                            var key = qspPair[0];
+                            var value = qspPair[1];
+                            if (value !== '') {
+                                _this.extraQueryParameters[key] = decodeURIComponent(value);
+                            }
+                            else {
+                                delete _this.extraQueryParameters[key];
+                            }
+                        }
+                    });
+                }
+            };
+            AuthStrapMsal.prototype.clearRollbackFlag = function () {
+                this.localStorage.removeItem(AuthStrapMsal.loginAttemptRecord);
+            };
+            AuthStrapMsal.prototype.messageFromException = function (e) {
+                if ((typeof Msal !== 'undefined') && (e instanceof Msal.AuthError)) {
+                    return e.errorCode + "|" + e.errorMessage;
+                }
+                return e.message || '';
+            };
+            AuthStrapMsal.prototype.showError = function (area, e) {
+                this.sendTelemetry("fatalerror&area=" + area + "&exception=" + encodeURIComponent(this.messageFromException(e)));
+                this.showErrorOuter(e);
+            };
+            AuthStrapMsal.prototype.tryWarnLog = function (text) {
+                if (this.console) {
+                    this.console.warn("AUTHSTRAPMSAL: " + text);
+                }
+            };
+            AuthStrapMsal.prototype.tryErrorLog = function (text) {
+                this.sendTelemetry("error&message=" + text);
+                if (this.console) {
+                    this.console.error("AUTHSTRAPMSAL: " + text);
+                }
+            };
+            AuthStrapMsal.consumersTenantId = '9188040d-6c67-4c5b-b112-36a304b66dad';
+            AuthStrapMsal.consumersAudience = 'consumers';
+            AuthStrapMsal.organizationsAudience = 'organizations';
+            AuthStrapMsal.commonAudience = 'common';
+            AuthStrapMsal.nonLoggedInUserLocationKey = "ts.nonLoggedInUserLocation";
+            AuthStrapMsal.redirect_authstrap_duration = 'ts.redirect_authstrap_duration';
+            AuthStrapMsal.loginRequired = 'ts.login.required';
+            AuthStrapMsal.siteRedirectionHint = 'ts.authstrap.siteRedirectionHint';
+            AuthStrapMsal.idTokenString = 'id_token=';
+            AuthStrapMsal.loginErrorKey = 'login.error';
+            AuthStrapMsal.tenantId = 'tenantId';
+            AuthStrapMsal.domainHint = 'domain_hint';
+            AuthStrapMsal.loginHint = 'login_hint';
+            AuthStrapMsal.loginHintSafe = 'login_hint_safe';
+            AuthStrapMsal.sid = 'sid';
+            AuthStrapMsal.hardcodedConsumerMT = 'https://teams.live.com/api/mt';
+            AuthStrapMsal.getTenantsRoute = '/beta/users/tenants';
+            AuthStrapMsal.authQsp = 'auth';
+            AuthStrapMsal.logoutQsp = 'logout';
+            AuthStrapMsal.forcePromptValue = 'select_account';
+            AuthStrapMsal.indexRoute = '_';
+            AuthStrapMsal.teamsCache = 'teams-precache';
+            AuthStrapMsal.authCookieName = 'DesiredAuth';
+            AuthStrapMsal.safeRolloutKey = 'safe_rollout';
+            AuthStrapMsal.authOptionsQsp = 'authoptions';
+            AuthStrapMsal.authOptionsCookieName = 'DesiredAuthOptions';
+            AuthStrapMsal.loginAttemptRecord = 'ts.authstrap.loginAttempt';
+            AuthStrapMsal.extraQSPsUsedByAuthstrap = 'ts.msalExtraQSPs';
+            AuthStrapMsal.msalActiveUserProfile = 'msal.activeUserProfile';
+            AuthStrapMsal.qspsToRemove = [
+                AuthStrapMsal.authQsp,
+                AuthStrapMsal.authOptionsQsp,
+                AuthStrapMsal.loginHint,
+                AuthStrapMsal.loginHintSafe,
+                AuthStrapMsal.sid
+            ];
+            AuthStrapMsal.errorCodesToIgnore = [
+                'invalid_state_error'
+            ];
+            return AuthStrapMsal;
+        }());
+        auth.AuthStrapMsal = AuthStrapMsal;
+    })(auth = teamspace.auth || (teamspace.auth = {}));
+})(teamspace || (teamspace = {}));
+//# sourceMappingURL=auth-strap-msal.js.map
+//# sourceMappingURL=auth-strap-msal.js.map
+F,6⁄      dç}¸dç}¸E¥Idç~    v    O^partitionKey=%28https%2Cmicrosoft.com%29,:https://statics.teams.cdn.office.net/authjs/enterprise/1.0/authstrap_m1.js necko:classified 1 strongly-framed 1 security-info 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 request-method GET response-head HTTP/2 200 OK
+content-length: 71377
+content-type: text/javascript
+content-md5: Ch76GjupPtYkw64e8c1VHg==
+last-modified: Mon, 12 Jun 2023 16:26:21 GMT
+accept-ranges: bytes
+etag: "0x8DB6B61C234DDD2"
+server: Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id: eacdb874-001e-0052-254a-9d5f91000000
+x-ms-version: 2014-02-14
+x-ms-lease-status: unlocked
+x-ms-lease-state: available
+x-ms-blob-type: BlockBlob
+access-control-expose-headers: x-ms-request-id,Server,x-ms-version,Content-Type,Cache-Control,Last-Modified,ETag,Content-MD5,x-ms-lease-status,x-ms-lease-state,x-ms-blob-type,Accept-Ranges,Content-Length,Date,Transfer-Encoding
+access-control-allow-origin: *
+cache-control: public, max-age=230
+date: Sat, 17 Jun 2023 09:33:25 GMT
+akamai-request-id: 0.4fb62bb9.1686994404.c3eccda
+report-to: {"group":"NelMSTeams","max_age":604800,"endpoints":[{"url":"https://teams.nel.measure.office.net/api/report?cat=teams"}]}
+nel: {"report_to":"NelMSTeams","max_age":604800,"failure_fraction":0.2,"success_fraction":0.001}
+timing-allow-origin: *
+X-Firefox-Spdy: h2
+ original-response-headers content-length: 71377
+content-type: text/javascript
+content-md5: Ch76GjupPtYkw64e8c1VHg==
+last-modified: Mon, 12 Jun 2023 16:26:21 GMT
+accept-ranges: bytes
+etag: "0x8DB6B61C234DDD2"
+server: Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id: eacdb874-001e-0052-254a-9d5f91000000
+x-ms-version: 2014-02-14
+x-ms-lease-status: unlocked
+x-ms-lease-state: available
+x-ms-blob-type: BlockBlob
+access-control-expose-headers: x-ms-request-id,Server,x-ms-version,Content-Type,Cache-Control,Last-Modified,ETag,Content-MD5,x-ms-lease-status,x-ms-lease-state,x-ms-blob-type,Accept-Ranges,Content-Length,Date,Transfer-Encoding
+access-control-allow-origin: *
+cache-control: public, max-age=230
+date: Sat, 17 Jun 2023 09:33:25 GMT
+akamai-request-id: 0.4fb62bb9.1686994404.c3eccda
+report-to: {"group":"NelMSTeams","max_age":604800,"endpoints":[{"url":"https://teams.nel.measure.office.net/api/report?cat=teams"}]}
+nel: {"report_to":"NelMSTeams","max_age":604800,"failure_fraction":0.2,"success_fraction":0.001}
+timing-allow-origin: *
+X-Firefox-Spdy: h2
+ ctid 2 uncompressed-len 0 net-response-time-onstart 123 net-response-time-onstop 127  —

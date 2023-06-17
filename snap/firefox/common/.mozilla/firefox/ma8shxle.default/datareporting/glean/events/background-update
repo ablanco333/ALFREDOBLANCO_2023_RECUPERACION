@@ -1,0 +1,2 @@
+{"timestamp":598850,"category":"nimbus_events","name":"enrollment","extra":{"experiment":"updated-import-infrequent-rollout-make-yourself-at-home-copy","branch":"control","experiment_type":"rollout","enrollment_id":"ce8a8623-b4fd-4a6b-b54c-c78c3bcda35d"}}
+{"timestamp":599536,"category":"nimbus_events","name":"exposure","extra":{"experiment":"updated-import-infrequent-rollout-make-yourself-at-home-copy","feature_id":"fxms-message-1","branch":"control"}}

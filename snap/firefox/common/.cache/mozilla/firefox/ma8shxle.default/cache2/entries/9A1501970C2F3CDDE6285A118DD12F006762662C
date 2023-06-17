@@ -1,0 +1,643 @@
+var translations = {};translations['yes'] = 'Yes';
+translations['no'] = 'No';
+translations['confirmation'] = 'Confirmation';
+translations['changes_not_saved'] = 'You didn\'t save changes. Are you sure you want to leave the page?';
+translations['select_at_least_one_variant'] = 'Select at least one test set';
+translations['day_shortcut'] = 'd';
+translations['month_shortcut'] = 'm';
+translations['infopopupTitle'] = 'Information';
+translations['infopopupOkBtn'] = 'Got it';
+translations['ajaxGenericError'] = 'Error occurred during this operation.';
+translations['correctErrors'] = 'Correct errors and try again';
+translations['createAtLeastOneVariant'] = 'Create at least one test set or disable manual configuration';
+translations['del'] = 'Remove';
+translations['gender_male_short'] = 'M';
+translations['gender_female_short'] = 'F';
+translations['respondent_on_start_state'] = 'Initial form';
+translations['no_date_respondents_state'] = 'none';
+translations['respondent_on_test_end_state'] = 'Test completed';
+translations['yourTimeHasChanged'] = 'Test owner has modified your time';
+translations['duplicatePostfix'] = '- copy';
+translations['results.table.column.score'] = 'Score';
+translations['results.table.column.score.total'] = 'Total score';
+translations['results.table.column.percents'] = 'Score (%)';
+translations['results.table.column.certificateStatus'] = 'Certificate sent';
+translations['results.table.column.attemptEndTimeInMs'] = 'End date';
+translations['results.table.column.attemptNumber'] = 'Attempt';
+translations['results.table.column.attemptStartTimeInMs'] = 'Start date';
+translations['results.table.column.attemptsCount'] = 'Number of attempts';
+translations['results.table.column.descriptiveGrade'] = 'Descriptive grade';
+translations['results.table.column.hasUnmakredAnswer'] = 'Not graded';
+translations['results.table.column.mark'] = 'Grade';
+translations['results.table.column.passed'] = 'Passed';
+translations['results.table.column.postalCode'] = 'Postal code';
+translations['results.table.column.sumOfWindowBlurs'] = 'Number of times respondents left question page';
+translations['results.table.column.totalTimeSpent'] = 'Time';
+translations['results.table.column.termNumber'] = 'Date';
+translations['results.table.column.variantLetter'] = 'Set';
+translations['results.table.column.organizationName'] = 'Organization\'s name';
+translations['results.table.column.personalId'] = 'ID number';
+translations['results.table.column.testname'] = 'Test name';
+translations['results.table.column.testCategoryName'] = 'Test category';
+translations['results.table.column.testStatus'] = 'Test status';
+translations['results.table.column.testCreationTimeInMs'] = 'Test created on';
+translations['results.table.column.testDescription'] = 'Test description';
+translations['results.table.column.userEmail'] = 'Test owner';
+translations['results.table.column.attempts'] = 'Tests completed';
+translations['results.table.column.scoreSum'] = 'Total score';
+translations['results.table.column.avgPercents'] = 'Average result';
+translations['results.table.column.resultsCount'] = 'Number of results';
+translations['results.table.sort.text.asc'] = 'from A';
+translations['results.table.sort.text.desc'] = 'from Z';
+translations['results.table.sort.select.asc'] = 'from A';
+translations['results.table.sort.select.desc'] = 'from Z';
+translations['results.table.sort.textarea.asc'] = 'from A';
+translations['results.table.sort.textarea.desc'] = 'from Z';
+translations['results.table.sort.number.asc'] = 'ascending';
+translations['results.table.sort.number.desc'] = 'descending';
+translations['results.table.sort.email.asc'] = 'from A';
+translations['results.table.sort.email.desc'] = 'from Z';
+translations['results.table.sort.radio.asc'] = 'from A';
+translations['results.table.sort.radio.desc'] = 'from Z';
+translations['results.table.column.score.asc'] = 'Score: from lowest';
+translations['results.table.column.percents.asc'] = 'Percentage result: from lowest';
+translations['results.table.column.certificateStatus.asc'] = 'Certificate Sent: from No';
+translations['results.table.column.attemptEndTimeInMs.asc'] = 'End date: oldest first';
+translations['results.table.column.attemptNumber.asc'] = 'Attempt: earliest first';
+translations['results.table.column.attemptStartTimeInMs.asc'] = 'Start date: earliest first';
+translations['results.table.column.descriptiveGrade.asc'] = 'Descriptive grade: from A';
+translations['results.table.column.mark.asc'] = 'Grade: lowest first';
+translations['results.table.column.passed.asc'] = 'Passed test: from No';
+translations['results.table.column.sumOfWindowBlurs.asc'] = 'Number of times respondent left question page: from lowest';
+translations['results.table.column.totalTimeSpent.asc'] = 'Answer time: shortest first';
+translations['results.table.column.termNumber.asc'] = 'Date: oldest first';
+translations['results.table.column.variantLetter.asc'] = 'Set: from A';
+translations['results.table.column.testname.asc'] = 'Test name: from A';
+translations['results.table.column.testCategoryName.asc'] = 'Test category: from A';
+translations['results.table.column.testStatus.asc'] = 'Test status: from A';
+translations['results.table.column.testCreationTimeInMs.asc'] = 'Test creation date: oldest first';
+translations['results.table.column.testDescription.asc'] = 'Test description: from A';
+translations['results.table.column.userEmail.asc'] = 'Test owner: from A';
+translations['results.table.column.score.desc'] = 'Score: from highest';
+translations['results.table.column.percents.desc'] = 'Percentage result: from highest';
+translations['results.table.column.certificateStatus.desc'] = 'Certificate Sent: from Yes';
+translations['results.table.column.attemptEndTimeInMs.desc'] = 'End date: newest first';
+translations['results.table.column.attemptNumber.desc'] = 'Attempt: latest first';
+translations['results.table.column.attemptStartTimeInMs.desc'] = 'Start date: latest first';
+translations['results.table.column.descriptiveGrade.desc'] = 'Descriptive grade: from Z';
+translations['results.table.column.mark.desc'] = 'Grade: highest first';
+translations['results.table.column.passed.desc'] = 'Passed test: from Yes';
+translations['results.table.column.sumOfWindowBlurs.desc'] = 'Number of times respondent left question page: from highest';
+translations['results.table.column.totalTimeSpent.desc'] = 'Answer time: longest first';
+translations['results.table.column.termNumber.desc'] = 'Date: newest first';
+translations['results.table.column.variantLetter.desc'] = 'Set: from Z';
+translations['results.table.column.testname.desc'] = 'Test name: from Z';
+translations['results.table.column.testCategoryName.desc'] = 'Test category: from Z';
+translations['results.table.column.testStatus.desc'] = 'Test status: from Z';
+translations['results.table.column.testCreationTimeInMs.desc'] = 'Test creation date: newest first';
+translations['results.table.column.testDescription.desc'] = 'Test description: from Z';
+translations['results.table.column.userEmail.desc'] = 'Test owner: from Z';
+translations['results.table.header.filter'] = 'Filter';
+translations['results.table.label.groupByLabel'] = 'Group results';
+translations['results.table.label.groupBy'] = 'by:';
+translations['results.table.groupBy.option.lastName_firstName'] = 'first and last name';
+translations['results.table.groupBy.option.lastName'] = 'last name';
+translations['results.table.groupBy.option.identificator'] = 'nickname';
+translations['results.table.groupBy.option.email'] = 'email address';
+translations['results.table.groupBy.reports_not_available_info'] = 'You can download reports only when "Group results" option hasn\'t been selected. If you need this feature inform us about it via a contact form.';
+translations['results.table.too_many_results.reports_not_available_info'] = 'You can download reports when table contains no more than %s results. Use filters and reduce the number of results in this table.';
+translations['results.table.too_many_results_pdf.reports_not_available_info'] = 'You can download results table in PDF format only if you have less than %s results in the table. Use filters or export data in XLSX or CSV.';
+translations['text.wait_for_results.all_results_archive'] = 'Feature will be available after results are loaded';
+translations['results.table.mail.status.NOT_SENT'] = 'No';
+translations['results.table.mail.status.SENT'] = 'Yes';
+translations['results.table.mail.status.SCHEDULED'] = 'In progress';
+translations['results.table.mail.status.ERROR'] = 'Error';
+translations['results.table.testStatus.SETUP'] = 'Setup in progress';
+translations['results.table.testStatus.SETUP_CONFIRMED'] = 'Settings confirmed - awaiting activation';
+translations['results.table.testStatus.ACTIVE'] = 'Active';
+translations['results.table.testStatus.ACCESS_CLOSED'] = 'Ended';
+translations['results.table.testStatus.FINISHED'] = 'Ended';
+translations['results.table.testStatus.FROZEN'] = 'Frozen';
+translations['results.select.option.not_saved_table_settings'] = 'Not saved';
+translations['results.caption.table_settings.save_as'] = 'Save';
+translations['results.caption.table_settings.delete'] = 'Delete';
+translations['results.text.confirm_settings_delete'] = 'Are you sure you want to delete selected table settings?';
+translations['results.label.default_table_settings'] = 'All results';
+translations['results.table.link.details'] = 'Details';
+translations['results.table.text.loading'] = 'Loading data, please wait.';
+translations['results.table.detailsNotAvailableTooltip'] = 'Upgrade your subscription to see details';
+translations['access.warning.email_sending_verification_needed'] = 'Test activation not possible! You\'re attempting to send multiple emails. Contact us to verify it\'s not Spam.';
+translations['mytests.table.column.name'] = 'Name';
+translations['mytests.table.column.description'] = 'Description';
+translations['mytests.table.column.creationTime'] = 'Created on';
+translations['mytests.table.column.status'] = 'Status';
+translations['mytests.table.column.categoryName'] = 'Category name';
+translations['mytests.table.link.details'] = 'Open';
+translations['unusedcodes.table.column.passcode'] = 'Access code';
+translations['unusedcodes.table.column.email'] = 'Email';
+translations['unusedcodes.table.column.testname'] = 'Test name';
+translations['label_firstname_asc'] = 'First name: from A';
+translations['label_firstname_desc'] = 'First name: from Z';
+translations['label_lastname_asc'] = 'Last name: from A';
+translations['label_lastname_desc'] = 'Last name: from Z';
+translations['label_identificator_asc'] = 'Nickname: from A';
+translations['label_identificator_desc'] = 'Nickname: from Z';
+translations['label_gender_asc'] = 'Sex: from Female';
+translations['label_gender_desc'] = 'Sex: from Male';
+translations['label_age_asc'] = 'Age: from youngest';
+translations['label_age_desc'] = 'Age: from oldest';
+translations['label_street_asc'] = 'Street: From A';
+translations['label_street_desc'] = 'Street: from Z';
+translations['label_city_asc'] = 'City/town: from A';
+translations['label_city_desc'] = 'City/town: from Z';
+translations['label_email_asc'] = 'Email: from A';
+translations['label_email_desc'] = 'Email: from Z';
+translations['label_score_asc'] = 'Score: from lowest';
+translations['label_score_desc'] = 'Score: from highest';
+translations['label_percents_asc'] = 'Percentage result: from lowest';
+translations['label_percents_desc'] = 'Percentage result: from highest';
+translations['label_certificatestatus_asc'] = 'Certificate Sent: from No';
+translations['label_certificatestatus_desc'] = 'Certificate Sent: from Yes';
+translations['label_termnumber_asc'] = 'Date: oldest first';
+translations['label_termnumber_desc'] = 'Date: newest first';
+translations['label_mark_asc'] = 'Grade: lowest first';
+translations['label_mark_desc'] = 'Grade: highest first';
+translations['label_attemptstarttime_asc'] = 'Start date: earliest first';
+translations['label_attemptstarttime_desc'] = 'Start date: latest first';
+translations['label_currentquestionposition_asc'] = 'Current question no.: lowest first';
+translations['label_currentquestionposition_desc'] = 'Current question no.: highest first';
+translations['label_attemptnumber_asc'] = 'Attempt: earliest first';
+translations['label_attemptnumber_desc'] = 'Attempt: latest first';
+translations['label_givenanswerscount_asc'] = 'Answers provided: least first';
+translations['label_givenanswerscount_desc'] = 'Answers provided: most first';
+translations['label_additional_asc'] = 'Additional info: from A';
+translations['label_additional_desc'] = 'Additional info: from Z';
+translations['label_phone_asc'] = 'Phone number: lowest first';
+translations['label_phone_desc'] = 'Phone number: highest first';
+translations['label_personalid_asc'] = 'ID no.: lowest first';
+translations['label_personalid_desc'] = 'ID no.: highest first';
+translations['label_organizationname_asc'] = 'Organization name: from A';
+translations['label_organizationname_desc'] = 'Organization name: from Z';
+translations.popupErrorIconPath = '/images/info_popup.png';translations.greenCheckboxIconPath = '/images/green_checkbox_popup.png';translations['button.delete.all'] = 'Remove';
+translations['button.edit.all'] = 'Edit';
+translations['text.personal_data.detailed_results'] = 'Personal data';
+translations['text.contact_data.detailed_results'] = 'Contact details';
+translations['text.additional_info.all'] = 'Additional information';
+translations['text.attemptStartTime.all'] = 'Start date';
+translations['text.attemptEndTime.all'] = 'End date';
+translations['label.passed_info.detailed_results'] = 'Pass/Fail information';
+translations['text.points_result_brackets.all'] = 'Score (pts)';
+translations['text.percent_result_brackets.all'] = 'Score (%)';
+translations['text.percent_result_per_category_brackets.all'] = 'Score per category (%)';
+translations['text.points_result_per_category_brackets.all'] = 'Score per category (pts)';
+translations['text.mark.all'] = 'Grade';
+translations['text.descriptive_mark.all'] = 'Descriptive grade';
+translations['text.test_attempt.all'] = 'Attempt';
+translations['text.showAnswersAndPoints.detailed_results'] = 'Correct answers and points per question';
+translations['text.test_variant.all'] = 'Set';
+translations['text.popup.download_test_answers_popup.title.results'] = 'Answer sheet content';
+translations['button.download.all'] = 'Download';
+translations['button.cancel.all'] = 'Cancel';
+translations['button.download_menu.results'] = 'Export results';
+translations['button.download_certificates_for_selected.results'] = 'Download certificates';
+translations['text.popup.download_detailed_results_popup.title.results'] = 'Results sheet content';
+translations['label.response_time_for_questions.detailed_results'] = 'Answer time per particular questions';
+translations['label.points_per_max_for_questions.detailed_results'] = 'Points scored for particular questions';
+translations['text.norespselected.results'] = 'Select at least one respondent';
+translations['text.calendar.su.time_parameters'] = 'Su';
+translations['text.calendar.mo.time_parameters'] = 'Mo';
+translations['text.calendar.tu.time_parameters'] = 'Tu';
+translations['text.calendar.we.time_parameters'] = 'We';
+translations['text.calendar.th.time_parameters'] = 'Th';
+translations['text.calendar.fr.time_parameters'] = 'Fr';
+translations['text.calendar.sa.time_parameters'] = 'Sa';
+translations['text.calendar.january.time_parameters'] = 'January';
+translations['text.calendar.february.time_parameters'] = 'February';
+translations['text.calendar.march.time_parameters'] = 'March';
+translations['text.calendar.april.time_parameters'] = 'April';
+translations['text.calendar.may.time_parameters'] = 'May';
+translations['text.calendar.june.time_parameters'] = 'June';
+translations['text.calendar.july.time_parameters'] = 'July';
+translations['text.calendar.august.time_parameters'] = 'August';
+translations['text.calendar.september.time_parameters'] = 'September';
+translations['text.calendar.october.time_parameters'] = 'October';
+translations['text.calendar.november.time_parameters'] = 'November';
+translations['text.calendar.december.time_parameters'] = 'December';
+translations['text.datepicker.button.apply.all_results_archive'] = 'Confirm';
+translations['text.datepicker.button.cancel.all_results_archive'] = 'Cancel';
+translations['text.datepicker.label.from.all_results_archive'] = 'From';
+translations['text.datepicker.label.to.all_results_archive'] = 'To';
+translations['text.datepicker.label.customRange.all_results_archive'] = 'Custom';
+translations['text.datepicker.dateformat.all_results_archive'] = 'YYYY-MM-DD HH:mm';
+translations['text.datepicker.button.clearfilter.all_results_archive'] = 'Clear filter';
+translations['label.group_by_filter.selectFilterColumn.all_results_archive'] = 'No filter';
+translations['lable.choose_value.searchTextFilterView.all_results_archive'] = 'No filter';
+translations['label.add_new_field.start_page'] = 'Add a field';
+translations['label.text.form_settings'] = 'text field';
+translations['label.email.form_settings'] = 'email address';
+translations['label.radio.form_settings'] = 'single choice';
+translations['label.number.form_settings'] = 'number';
+translations['label.textarea.form_settings'] = 'text area';
+translations['label.select.form_settings'] = 'drop-down list';
+translations['table.manageCustomFields.column.label.customize_personal_data_fields'] = 'Label';
+translations['table.manageCustomFields.column.type.customize_personal_data_fields'] = 'Type';
+translations['table.manageCustomFields.column.actions.customize_personal_data_fields'] = 'Actions';
+translations['label.add_new_custom_field.customize_personal_data_fields'] = 'Add custom field';
+translations['label.add_new_custom_field.popup.customize_personal_data_fields'] = 'Add field';
+translations['label.fieldLabel.popup.customize_personal_data_fields'] = 'Label';
+translations['label.fieldType.popup.customize_personal_data_fields'] = 'Type';
+translations['title.confirm_delete_popup.customize_personal_data_fields'] = 'Delete custom field';
+translations['title.text.confirm_delete_popup.customize_personal_data_fields'] = 'Warning! If you delete this field, you will also remove it <b>from all tests</b> where it\'s been used. Are you sure you want to delete <b>{0}</b>?';
+translations['label.add_new_select_option.customize_personal_data_fields'] = 'Add option';
+translations['label.edit_select_field.customize_personal_data_fields'] = 'Edit list of available choice options';
+translations['button.save.all'] = 'Save';
+translations['error.input.field.required.all'] = 'Required field';
+translations['error.select_options_list_empty.customize_personal_data_fields'] = 'Enter at least one choice option';
+translations['text.no_data_will_be_required.start_page'] = 'No data will be required from respondents';
+translations['label.select.add_new_custom_field.start_page'] = '---- Add new custom field ----';
+translations['text.CustomizePersonalDataFields.navi'] = 'Respondent data fields';
+translations['label.backToStartPageLink.customize_personal_data_fields'] = 'Return to settings';
+translations['label.add_new_select_options_bulk.customize_personal_data_fields'] = 'Enter multiple options';
+translations['label.add_new_select_options_bulk.p1.customize_personal_data_fields'] = 'Enter possible choice options in the text field below. Every option must be in a separate line.';
+translations['button.add.all'] = 'Add';
+translations['error.field_already_exists.customize_personal_data_fields'] = 'Field with these properties already exists';
+translations['label.next.detailed_results'] = 'Next';
+translations['label.previous.detailed_results'] = 'Previous';
+translations['label.go_to.detailed_results'] = 'Go to respondent';
+translations['label.anonymous_respondent.results'] = '[no data]';
+translations['error.invalidcharactersinfieldlabel.customize_personal_data_fields'] = 'Field name can\'t contain characters: \ & < > " _ \'';
+translations['button.move_up.all'] = 'Move up';
+translations['button.move_down.all'] = 'Move down';
+translations['label.manage_custom_fields.start_page'] = 'Manage custom fields';
+translations['text.field_column.start_page'] = 'Field';
+translations['text.mandatory_column.start_page'] = 'Mandatory';
+translations['label.paginator_state.results'] = 'Result page:';
+translations['button.zoom_image.all'] = 'Zoom image';
+translations['text.zoom_loading.all'] = 'Loading enlarged image. It may take a while...';
+translations['error.assetuploadfailed.internalservererror.all'] = 'File upload failed due to internal server error.';
+translations['error.assetuploadfailed.formatorsize.all'] = 'File too big or in an invalid format. Max. file size is 10MB. Try again with a different file.';
+translations['error.assetuploadfailed.unsupportedformat.all'] = 'File format is not supported.';
+translations['label.sort_by.all'] = 'Sort by:';
+translations['label.filter_placeholder.results'] = 'Filter';
+translations['label.paginator_rows_select.results'] = 'Results per page';
+translations['label.paginator_rows_of.results'] = 'of';
+translations['text.upload_in_progress.title.popup.all'] = 'File upload in progress';
+translations['text.upload_in_progress.popup.all'] = 'Uploading file - it may take up to a minute. Please wait...';
+translations['text.max_words_count_reached.all'] = 'Word count limit reached.';
+translations['ms_teams_share.table.link.details'] = 'Select';
+translations['text.descriptive.autosave.test_question'] = 'Answer auto-saved at:';
+translations['button.close_zoom.all'] = 'Close zoom';
+translations['text.table.no.results.label'] = 'No results to show';
+        `—  x`—ü.   20230424185118-8l	@   https://static.testportal.net/transl.html?lang=en&v=a8b37c81d181       äT  var translations = {};translations['yes'] = 'Yes';
+translations['no'] = 'No';
+translations['confirmation'] = 'Confirmation';
+translations['changes_not_saved'] = 'You didn\'t save changes. Are you sure you want to leave the page?';
+translations['select_at_least_one_variant'] = 'Select at least one test set';
+translations['day_shortcut'] = 'd';
+translations['month_shortcut'] = 'm';
+translations['infopopupTitle'] = 'Information';
+translations['infopopupOkBtn'] = 'Got it';
+translations['ajaxGenericError'] = 'Error occurred during this operation.';
+translations['correctErrors'] = 'Correct errors and try again';
+translations['createAtLeastOneVariant'] = 'Create at least one test set or disable manual configuration';
+translations['del'] = 'Remove';
+translations['gender_male_short'] = 'M';
+translations['gender_female_short'] = 'F';
+translations['respondent_on_start_state'] = 'Initial form';
+translations['no_date_respondents_state'] = 'none';
+translations['respondent_on_test_end_state'] = 'Test completed';
+translations['yourTimeHasChanged'] = 'Test owner has modified your time';
+translations['duplicatePostfix'] = '- copy';
+translations['results.table.column.score'] = 'Score';
+translations['results.table.column.score.total'] = 'Total score';
+translations['results.table.column.percents'] = 'Score (%)';
+translations['results.table.column.certificateStatus'] = 'Certificate sent';
+translations['results.table.column.attemptEndTimeInMs'] = 'End date';
+translations['results.table.column.attemptNumber'] = 'Attempt';
+translations['results.table.column.attemptStartTimeInMs'] = 'Start date';
+translations['results.table.column.attemptsCount'] = 'Number of attempts';
+translations['results.table.column.descriptiveGrade'] = 'Descriptive grade';
+translations['results.table.column.hasUnmakredAnswer'] = 'Not graded';
+translations['results.table.column.mark'] = 'Grade';
+translations['results.table.column.passed'] = 'Passed';
+translations['results.table.column.postalCode'] = 'Postal code';
+translations['results.table.column.sumOfWindowBlurs'] = 'Number of times respondents left question page';
+translations['results.table.column.totalTimeSpent'] = 'Time';
+translations['results.table.column.termNumber'] = 'Date';
+translations['results.table.column.variantLetter'] = 'Set';
+translations['results.table.column.organizationName'] = 'Organization\'s name';
+translations['results.table.column.personalId'] = 'ID number';
+translations['results.table.column.testname'] = 'Test name';
+translations['results.table.column.testCategoryName'] = 'Test category';
+translations['results.table.column.testStatus'] = 'Test status';
+translations['results.table.column.testCreationTimeInMs'] = 'Test created on';
+translations['results.table.column.testDescription'] = 'Test description';
+translations['results.table.column.userEmail'] = 'Test owner';
+translations['results.table.column.attempts'] = 'Tests completed';
+translations['results.table.column.scoreSum'] = 'Total score';
+translations['results.table.column.avgPercents'] = 'Average result';
+translations['results.table.column.resultsCount'] = 'Number of results';
+translations['results.table.sort.text.asc'] = 'from A';
+translations['results.table.sort.text.desc'] = 'from Z';
+translations['results.table.sort.select.asc'] = 'from A';
+translations['results.table.sort.select.desc'] = 'from Z';
+translations['results.table.sort.textarea.asc'] = 'from A';
+translations['results.table.sort.textarea.desc'] = 'from Z';
+translations['results.table.sort.number.asc'] = 'ascending';
+translations['results.table.sort.number.desc'] = 'descending';
+translations['results.table.sort.email.asc'] = 'from A';
+translations['results.table.sort.email.desc'] = 'from Z';
+translations['results.table.sort.radio.asc'] = 'from A';
+translations['results.table.sort.radio.desc'] = 'from Z';
+translations['results.table.column.score.asc'] = 'Score: from lowest';
+translations['results.table.column.percents.asc'] = 'Percentage result: from lowest';
+translations['results.table.column.certificateStatus.asc'] = 'Certificate Sent: from No';
+translations['results.table.column.attemptEndTimeInMs.asc'] = 'End date: oldest first';
+translations['results.table.column.attemptNumber.asc'] = 'Attempt: earliest first';
+translations['results.table.column.attemptStartTimeInMs.asc'] = 'Start date: earliest first';
+translations['results.table.column.descriptiveGrade.asc'] = 'Descriptive grade: from A';
+translations['results.table.column.mark.asc'] = 'Grade: lowest first';
+translations['results.table.column.passed.asc'] = 'Passed test: from No';
+translations['results.table.column.sumOfWindowBlurs.asc'] = 'Number of times respondent left question page: from lowest';
+translations['results.table.column.totalTimeSpent.asc'] = 'Answer time: shortest first';
+translations['results.table.column.termNumber.asc'] = 'Date: oldest first';
+translations['results.table.column.variantLetter.asc'] = 'Set: from A';
+translations['results.table.column.testname.asc'] = 'Test name: from A';
+translations['results.table.column.testCategoryName.asc'] = 'Test category: from A';
+translations['results.table.column.testStatus.asc'] = 'Test status: from A';
+translations['results.table.column.testCreationTimeInMs.asc'] = 'Test creation date: oldest first';
+translations['results.table.column.testDescription.asc'] = 'Test description: from A';
+translations['results.table.column.userEmail.asc'] = 'Test owner: from A';
+translations['results.table.column.score.desc'] = 'Score: from highest';
+translations['results.table.column.percents.desc'] = 'Percentage result: from highest';
+translations['results.table.column.certificateStatus.desc'] = 'Certificate Sent: from Yes';
+translations['results.table.column.attemptEndTimeInMs.desc'] = 'End date: newest first';
+translations['results.table.column.attemptNumber.desc'] = 'Attempt: latest first';
+translations['results.table.column.attemptStartTimeInMs.desc'] = 'Start date: latest first';
+translations['results.table.column.descriptiveGrade.desc'] = 'Descriptive grade: from Z';
+translations['results.table.column.mark.desc'] = 'Grade: highest first';
+translations['results.table.column.passed.desc'] = 'Passed test: from Yes';
+translations['results.table.column.sumOfWindowBlurs.desc'] = 'Number of times respondent left question page: from highest';
+translations['results.table.column.totalTimeSpent.desc'] = 'Answer time: longest first';
+translations['results.table.column.termNumber.desc'] = 'Date: newest first';
+translations['results.table.column.variantLetter.desc'] = 'Set: from Z';
+translations['results.table.column.testname.desc'] = 'Test name: from Z';
+translations['results.table.column.testCategoryName.desc'] = 'Test category: from Z';
+translations['results.table.column.testStatus.desc'] = 'Test status: from Z';
+translations['results.table.column.testCreationTimeInMs.desc'] = 'Test creation date: newest first';
+translations['results.table.column.testDescription.desc'] = 'Test description: from Z';
+translations['results.table.column.userEmail.desc'] = 'Test owner: from Z';
+translations['results.table.header.filter'] = 'Filter';
+translations['results.table.label.groupByLabel'] = 'Group results';
+translations['results.table.label.groupBy'] = 'by:';
+translations['results.table.groupBy.option.lastName_firstName'] = 'first and last name';
+translations['results.table.groupBy.option.lastName'] = 'last name';
+translations['results.table.groupBy.option.identificator'] = 'nickname';
+translations['results.table.groupBy.option.email'] = 'email address';
+translations['results.table.groupBy.reports_not_available_info'] = 'You can download reports only when "Group results" option hasn\'t been selected. If you need this feature inform us about it via a contact form.';
+translations['results.table.too_many_results.reports_not_available_info'] = 'You can download reports when table contains no more than %s results. Use filters and reduce the number of results in this table.';
+translations['results.table.too_many_results_pdf.reports_not_available_info'] = 'You can download results table in PDF format only if you have less than %s results in the table. Use filters or export data in XLSX or CSV.';
+translations['text.wait_for_results.all_results_archive'] = 'Feature will be available after results are loaded';
+translations['results.table.mail.status.NOT_SENT'] = 'No';
+translations['results.table.mail.status.SENT'] = 'Yes';
+translations['results.table.mail.status.SCHEDULED'] = 'In progress';
+translations['results.table.mail.status.ERROR'] = 'Error';
+translations['results.table.testStatus.SETUP'] = 'Setup in progress';
+translations['results.table.testStatus.SETUP_CONFIRMED'] = 'Settings confirmed - awaiting activation';
+translations['results.table.testStatus.ACTIVE'] = 'Active';
+translations['results.table.testStatus.ACCESS_CLOSED'] = 'Ended';
+translations['results.table.testStatus.FINISHED'] = 'Ended';
+translations['results.table.testStatus.FROZEN'] = 'Frozen';
+translations['results.select.option.not_saved_table_settings'] = 'Not saved';
+translations['results.caption.table_settings.save_as'] = 'Save';
+translations['results.caption.table_settings.delete'] = 'Delete';
+translations['results.text.confirm_settings_delete'] = 'Are you sure you want to delete selected table settings?';
+translations['results.label.default_table_settings'] = 'All results';
+translations['results.table.link.details'] = 'Details';
+translations['results.table.text.loading'] = 'Loading data, please wait.';
+translations['results.table.detailsNotAvailableTooltip'] = 'Upgrade your subscription to see details';
+translations['access.warning.email_sending_verification_needed'] = 'Test activation not possible! You\'re attempting to send multiple emails. Contact us to verify it\'s not Spam.';
+translations['mytests.table.column.name'] = 'Name';
+translations['mytests.table.column.description'] = 'Description';
+translations['mytests.table.column.creationTime'] = 'Created on';
+translations['mytests.table.column.status'] = 'Status';
+translations['mytests.table.column.categoryName'] = 'Category name';
+translations['mytests.table.link.details'] = 'Open';
+translations['unusedcodes.table.column.passcode'] = 'Access code';
+translations['unusedcodes.table.column.email'] = 'Email';
+translations['unusedcodes.table.column.testname'] = 'Test name';
+translations['label_firstname_asc'] = 'First name: from A';
+translations['label_firstname_desc'] = 'First name: from Z';
+translations['label_lastname_asc'] = 'Last name: from A';
+translations['label_lastname_desc'] = 'Last name: from Z';
+translations['label_identificator_asc'] = 'Nickname: from A';
+translations['label_identificator_desc'] = 'Nickname: from Z';
+translations['label_gender_asc'] = 'Sex: from Female';
+translations['label_gender_desc'] = 'Sex: from Male';
+translations['label_age_asc'] = 'Age: from youngest';
+translations['label_age_desc'] = 'Age: from oldest';
+translations['label_street_asc'] = 'Street: From A';
+translations['label_street_desc'] = 'Street: from Z';
+translations['label_city_asc'] = 'City/town: from A';
+translations['label_city_desc'] = 'City/town: from Z';
+translations['label_email_asc'] = 'Email: from A';
+translations['label_email_desc'] = 'Email: from Z';
+translations['label_score_asc'] = 'Score: from lowest';
+translations['label_score_desc'] = 'Score: from highest';
+translations['label_percents_asc'] = 'Percentage result: from lowest';
+translations['label_percents_desc'] = 'Percentage result: from highest';
+translations['label_certificatestatus_asc'] = 'Certificate Sent: from No';
+translations['label_certificatestatus_desc'] = 'Certificate Sent: from Yes';
+translations['label_termnumber_asc'] = 'Date: oldest first';
+translations['label_termnumber_desc'] = 'Date: newest first';
+translations['label_mark_asc'] = 'Grade: lowest first';
+translations['label_mark_desc'] = 'Grade: highest first';
+translations['label_attemptstarttime_asc'] = 'Start date: earliest first';
+translations['label_attemptstarttime_desc'] = 'Start date: latest first';
+translations['label_currentquestionposition_asc'] = 'Current question no.: lowest first';
+translations['label_currentquestionposition_desc'] = 'Current question no.: highest first';
+translations['label_attemptnumber_asc'] = 'Attempt: earliest first';
+translations['label_attemptnumber_desc'] = 'Attempt: latest first';
+translations['label_givenanswerscount_asc'] = 'Answers provided: least first';
+translations['label_givenanswerscount_desc'] = 'Answers provided: most first';
+translations['label_additional_asc'] = 'Additional info: from A';
+translations['label_additional_desc'] = 'Additional info: from Z';
+translations['label_phone_asc'] = 'Phone number: lowest first';
+translations['label_phone_desc'] = 'Phone number: highest first';
+translations['label_personalid_asc'] = 'ID no.: lowest first';
+translations['label_personalid_desc'] = 'ID no.: highest first';
+translations['label_organizationname_asc'] = 'Organization name: from A';
+translations['label_organizationname_desc'] = 'Organization name: from Z';
+translations.popupErrorIconPath = '/images/info_popup.png';translations.greenCheckboxIconPath = '/images/green_checkbox_popup.png';translations['button.delete.all'] = 'Remove';
+translations['button.edit.all'] = 'Edit';
+translations['text.personal_data.detailed_results'] = 'Personal data';
+translations['text.contact_data.detailed_results'] = 'Contact details';
+translations['text.additional_info.all'] = 'Additional information';
+translations['text.attemptStartTime.all'] = 'Start date';
+translations['text.attemptEndTime.all'] = 'End date';
+translations['label.passed_info.detailed_results'] = 'Pass/Fail information';
+translations['text.points_result_brackets.all'] = 'Score (pts)';
+translations['text.percent_result_brackets.all'] = 'Score (%)';
+translations['text.percent_result_per_category_brackets.all'] = 'Score per category (%)';
+translations['text.points_result_per_category_brackets.all'] = 'Score per category (pts)';
+translations['text.mark.all'] = 'Grade';
+translations['text.descriptive_mark.all'] = 'Descriptive grade';
+translations['text.test_attempt.all'] = 'Attempt';
+translations['text.showAnswersAndPoints.detailed_results'] = 'Correct answers and points per question';
+translations['text.test_variant.all'] = 'Set';
+translations['text.popup.download_test_answers_popup.title.results'] = 'Answer sheet content';
+translations['button.download.all'] = 'Download';
+translations['button.cancel.all'] = 'Cancel';
+translations['button.download_menu.results'] = 'Export results';
+translations['button.download_certificates_for_selected.results'] = 'Download certificates';
+translations['text.popup.download_detailed_results_popup.title.results'] = 'Results sheet content';
+translations['label.response_time_for_questions.detailed_results'] = 'Answer time per particular questions';
+translations['label.points_per_max_for_questions.detailed_results'] = 'Points scored for particular questions';
+translations['text.norespselected.results'] = 'Select at least one respondent';
+translations['text.calendar.su.time_parameters'] = 'Su';
+translations['text.calendar.mo.time_parameters'] = 'Mo';
+translations['text.calendar.tu.time_parameters'] = 'Tu';
+translations['text.calendar.we.time_parameters'] = 'We';
+translations['text.calendar.th.time_parameters'] = 'Th';
+translations['text.calendar.fr.time_parameters'] = 'Fr';
+translations['text.calendar.sa.time_parameters'] = 'Sa';
+translations['text.calendar.january.time_parameters'] = 'January';
+translations['text.calendar.february.time_parameters'] = 'February';
+translations['text.calendar.march.time_parameters'] = 'March';
+translations['text.calendar.april.time_parameters'] = 'April';
+translations['text.calendar.may.time_parameters'] = 'May';
+translations['text.calendar.june.time_parameters'] = 'June';
+translations['text.calendar.july.time_parameters'] = 'July';
+translations['text.calendar.august.time_parameters'] = 'August';
+translations['text.calendar.september.time_parameters'] = 'September';
+translations['text.calendar.october.time_parameters'] = 'October';
+translations['text.calendar.november.time_parameters'] = 'November';
+translations['text.calendar.december.time_parameters'] = 'December';
+translations['text.datepicker.button.apply.all_results_archive'] = 'Confirm';
+translations['text.datepicker.button.cancel.all_results_archive'] = 'Cancel';
+translations['text.datepicker.label.from.all_results_archive'] = 'From';
+translations['text.datepicker.label.to.all_results_archive'] = 'To';
+translations['text.datepicker.label.customRange.all_results_archive'] = 'Custom';
+translations['text.datepicker.dateformat.all_results_archive'] = 'YYYY-MM-DD HH:mm';
+translations['text.datepicker.button.clearfilter.all_results_archive'] = 'Clear filter';
+translations['label.group_by_filter.selectFilterColumn.all_results_archive'] = 'No filter';
+translations['lable.choose_value.searchTextFilterView.all_results_archive'] = 'No filter';
+translations['label.add_new_field.start_page'] = 'Add a field';
+translations['label.text.form_settings'] = 'text field';
+translations['label.email.form_settings'] = 'email address';
+translations['label.radio.form_settings'] = 'single choice';
+translations['label.number.form_settings'] = 'number';
+translations['label.textarea.form_settings'] = 'text area';
+translations['label.select.form_settings'] = 'drop-down list';
+translations['table.manageCustomFields.column.label.customize_personal_data_fields'] = 'Label';
+translations['table.manageCustomFields.column.type.customize_personal_data_fields'] = 'Type';
+translations['table.manageCustomFields.column.actions.customize_personal_data_fields'] = 'Actions';
+translations['label.add_new_custom_field.customize_personal_data_fields'] = 'Add custom field';
+translations['label.add_new_custom_field.popup.customize_personal_data_fields'] = 'Add field';
+translations['label.fieldLabel.popup.customize_personal_data_fields'] = 'Label';
+translations['label.fieldType.popup.customize_personal_data_fields'] = 'Type';
+translations['title.confirm_delete_popup.customize_personal_data_fields'] = 'Delete custom field';
+translations['title.text.confirm_delete_popup.customize_personal_data_fields'] = 'Warning! If you delete this field, you will also remove it <b>from all tests</b> where it\'s been used. Are you sure you want to delete <b>{0}</b>?';
+translations['label.add_new_select_option.customize_personal_data_fields'] = 'Add option';
+translations['label.edit_select_field.customize_personal_data_fields'] = 'Edit list of available choice options';
+translations['button.save.all'] = 'Save';
+translations['error.input.field.required.all'] = 'Required field';
+translations['error.select_options_list_empty.customize_personal_data_fields'] = 'Enter at least one choice option';
+translations['text.no_data_will_be_required.start_page'] = 'No data will be required from respondents';
+translations['label.select.add_new_custom_field.start_page'] = '---- Add new custom field ----';
+translations['text.CustomizePersonalDataFields.navi'] = 'Respondent data fields';
+translations['label.backToStartPageLink.customize_personal_data_fields'] = 'Return to settings';
+translations['label.add_new_select_options_bulk.customize_personal_data_fields'] = 'Enter multiple options';
+translations['label.add_new_select_options_bulk.p1.customize_personal_data_fields'] = 'Enter possible choice options in the text field below. Every option must be in a separate line.';
+translations['button.add.all'] = 'Add';
+translations['error.field_already_exists.customize_personal_data_fields'] = 'Field with these properties already exists';
+translations['label.next.detailed_results'] = 'Next';
+translations['label.previous.detailed_results'] = 'Previous';
+translations['label.go_to.detailed_results'] = 'Go to respondent';
+translations['label.anonymous_respondent.results'] = '[no data]';
+translations['error.invalidcharactersinfieldlabel.customize_personal_data_fields'] = 'Field name can\'t contain characters: \ & < > " _ \'';
+translations['button.move_up.all'] = 'Move up';
+translations['button.move_down.all'] = 'Move down';
+translations['label.manage_custom_fields.start_page'] = 'Manage custom fields';
+translations['text.field_column.start_page'] = 'Field';
+translations['text.mandatory_column.start_page'] = 'Mandatory';
+translations['label.paginator_state.results'] = 'Result page:';
+translations['button.zoom_image.all'] = 'Zoom image';
+translations['text.zoom_loading.all'] = 'Loading enlarged image. It may take a while...';
+translations['error.assetuploadfailed.internalservererror.all'] = 'File upload failed due to internal server error.';
+translations['error.assetuploadfailed.formatorsize.all'] = 'File too big or in an invalid format. Max. file size is 10MB. Try again with a different file.';
+translations['error.assetuploadfailed.unsupportedformat.all'] = 'File format is not supported.';
+translations['label.sort_by.all'] = 'Sort by:';
+translations['label.filter_placeholder.results'] = 'Filter';
+translations['label.paginator_rows_select.results'] = 'Results per page';
+translations['label.paginator_rows_of.results'] = 'of';
+translations['text.upload_in_progress.title.popup.all'] = 'File upload in progress';
+translations['text.upload_in_progress.popup.all'] = 'Uploading file - it may take up to a minute. Please wait...';
+translations['text.max_words_count_reached.all'] = 'Word count limit reached.';
+translations['ms_teams_share.table.link.details'] = 'Select';
+translations['text.descriptive.autosave.test_question'] = 'Answer auto-saved at:';
+translations['button.close_zoom.all'] = 'Close zoom';
+translations['text.table.no.results.label'] = 'No results to show';
+”ò¿Ÿ           oÜ©      translations   ‚gÚü      yes    7Ã      Yes    õO’ø      confirmation   5Ï      Confirmation   €á›ó      changes_not_saved      {§ÀYA      You didn't save changes. Are you sure you want to leave the page?      jË˜-      select_at_least_one_variant    £)      Select at least one test set	   Ìôr¡      day_shortcut
+   5¨Á‚      month_shortcut     BüÅﬂ      infopopupTitle     †I˙.      Information    4 ß      infopopupOkBtn     öΩÔ      Got it     ’>&¯      ajaxGenericError   ;èÙ–%      Error occurred during this operation.      ß∫˘Ü      correctErrors      `Ù≈M      Correct errors and try again   ö´i§      createAtLeastOneVariant    9˜ç<      Create at least one test set or disable manual configuration   c√JI      del    †Ç6      Remove     %ÊPä      gender_male_short      {æ¢Ω      gender_female_short    •~$!      respondent_on_start_state      ÈT       Initial form   ÇÖ¯!      no_date_respondents_state      ,Ω      none   réa      respondent_on_test_end_state   Å«&Ù      Test completed     y_a      yourTimeHasChanged      Îôı!      Test owner has modified your time!      ≈≤É∫      duplicatePostfix"   ´v¬      - copy#     eî›q      results.table.column.score$     6›øˇ      Score%      \Ó∂       results.table.column.score.total&   ÅÈ¬      Total score'    c¶ü      results.table.column.percents(      †íÙ.	      Score (%))      ’ìKä&      results.table.column.certificateStatus*     ‡-¨a      Certificate sent+   Da˚!'      results.table.column.attemptEndTimeInMs,    S∫”C      End date-   ¸é"      results.table.column.attemptNumber.     }iö      Attempt/    ¨É)      results.table.column.attemptStartTimeInMs0      oó∆Ì
+      Start date1     <¸su"      results.table.column.attemptsCount2     ÂW¥‹      Number of attempts3     AxŒ¡%      results.table.column.descriptiveGrade4      xÌgÊ      Descriptive grade5      ËXë &      results.table.column.hasUnmakredAnswer6     ∏AÀ
+      Not graded7     üaAÙ      results.table.column.mark8      Ôˇu      Grade9      ú Ò§      results.table.column.passed:    y€∫‚      Passed;     Ú¡3Ô      results.table.column.postalCode<    ÌÑ[ã      Postal code=    a §%      results.table.column.sumOfWindowBlurs>      ØjÈ.      Number of times respondents left question page?     Ç∑„K#      results.table.column.totalTimeSpent@    .¶—∆      TimeA   Ω±      results.table.column.termNumberB    d…ü"      results.table.column.variantLetterC     € π#%      results.table.column.organizationNameD      \i	ù      Organization's nameE    èr≤À      results.table.column.personalIdF    
+Ä?¥	      ID numberG      2˝Œ      results.table.column.testnameH      ˛]˙¢	      Test nameI      XG∂%      results.table.column.testCategoryNameJ      iCˆ:      Test categoryK      Ç◊Ìï      results.table.column.testStatusL    ∫X      Test statusM    3Åå)      results.table.column.testCreationTimeInMsN      Ï`}      Test created onO    ïòÂ$      results.table.column.testDescriptionP   ´ı3      Test descriptionQ   G‡      results.table.column.userEmailR     À@ö 
+      Test ownerS     I=2M      results.table.column.attemptsT      %ˇ˜      Tests completedU    ˜_&ƒ      results.table.column.scoreSumV      5#U®       results.table.column.avgPercentsW   nèê      Average resultX     âùDŒ!      results.table.column.resultsCountY      ¿∑      Number of resultsZ      ‚@
+      results.table.sort.text.asc[    jd
+L      from A\     EeŒ∫      results.table.sort.text.desc]   YÅüÿ      from Z^     ·.]π      results.table.sort.select.asc_      ¯'Í0      results.table.sort.select.desc`     ÜÕ»≈      results.table.sort.textarea.asca    RöÙs       results.table.sort.textarea.descb   ∫îçO      results.table.sort.number.ascc      0ògÛ	      ascendingd      jÊÌ†      results.table.sort.number.desce     Å¨&
+      descendingf     *[ﬂ5      results.table.sort.email.ascg   Ã^N-      results.table.sort.email.desch      ˜•´÷      results.table.sort.radio.asci   MÑœÉ      results.table.sort.radio.descj      >Ø[x      results.table.column.score.asck     ÿ÷z?      Score: from lowestl     _¥âA!      results.table.column.percents.ascm      T}5¸      Percentage result: from lowestn     Ç”Å¯*      results.table.column.certificateStatus.asco     dö¸¨      Certificate Sent: from Nop      ≈®≠+      results.table.column.attemptEndTimeInMs.ascq    HRàp      End date: oldest firstr     Åì∑&      results.table.column.attemptNumber.ascs     Èn      Attempt: earliest firstt    ¢|ıˆ-      results.table.column.attemptStartTimeInMs.ascu      8Ω¸      Start date: earliest firstv     Ìs;")      results.table.column.descriptiveGrade.ascw      «∞ñù      Descriptive grade: from Ax      JOph      results.table.column.mark.ascy      ´õV*      Grade: lowest firstz    în/      results.table.column.passed.asc{    Zÿ'˝      Passed test: from No|   5∂∫)      results.table.column.sumOfWindowBlurs.asc}      ú‡U:      Number of times respondent left question page: from lowest~     ¯p&'      results.table.column.totalTimeSpent.asc    J÷ä›      Answer time: shortest firstÄ    "îzï#      results.table.column.termNumber.ascÅ    ˜f’∏      Date: oldest firstÇ     àı}ˇ&      results.table.column.variantLetter.ascÉ     ∫ûÂı      Set: from AÑ    ”ı<y!      results.table.column.testname.ascÖ      ´\∆⁄      Test name: from AÜ      Ö^C)      results.table.column.testCategoryName.ascá      4¢∆¸      Test category: from Aà      gñ˜#      results.table.column.testStatus.ascâ    €≠ò}      Test status: from Aä    å±Õ-      results.table.column.testCreationTimeInMs.ascã      DÃ J       Test creation date: oldest firstå   P.(      results.table.column.testDescription.ascç   ÚÑCT      Test description: from Aé   wı®"      results.table.column.userEmail.ascè     bJ+      Test owner: from Aê     !hÁ      results.table.column.score.descë    %ú<Ω      Score: from highestí    “¥dJ"      results.table.column.percents.descì     ,Æh      Percentage result: from highestî    âŸ|+      results.table.column.certificateStatus.descï    z∫Ó¸      Certificate Sent: from Yesñ     ÏÍ?,      results.table.column.attemptEndTimeInMs.descó   h™˙$      End date: newest firstò     @o‘'      results.table.column.attemptNumber.descô    ":zR      Attempt: latest firstö      *∫.      results.table.column.attemptStartTimeInMs.descõ     ÌK˚      Start date: latest firstú   ∫G,*      results.table.column.descriptiveGrade.descù     D⁄ºÌ      Descriptive grade: from Zû      º´hπ      results.table.column.mark.descü     Ù™„      Grade: highest first†   Û∞Ë       results.table.column.passed.desc°   kí?      Passed test: from Yes¢      }≥$´*      results.table.column.sumOfWindowBlurs.desc£     W∞7Q;      Number of times respondent left question page: from highest§    °P›(      results.table.column.totalTimeSpent.desc•   h›Ûf      Answer time: longest first¶     Pv=R$      results.table.column.termNumber.descß   wÏÆr      Date: newest first®     Ñ–)˚'      results.table.column.variantLetter.desc©    …ÚiI      Set: from Z™    §ﬁ "      results.table.column.testname.desc´     ÿXS’      Test name: from Z¨       Lnú*      results.table.column.testCategoryName.desc≠     óA±Â      Test category: from ZÆ      —êpñ$      results.table.column.testStatus.descØ   Ër6±      Test status: from Z∞    ]á”}.      results.table.column.testCreationTimeInMs.desc±     $M\       Test creation date: newest first≤   BÆÓ:)      results.table.column.testDescription.desc≥      ët?ã      Test description: from Z¥   Fä,L#      results.table.column.userEmail.descµ    ·œVõ      Test owner: from Z∂     ≈„X      results.table.header.filter∑    ∆ØÊ™      Filter∏     √í»≈       results.table.label.groupByLabelπ   qFv¿      Group results∫      Y÷Í|      results.table.label.groupByª    ˚h˚      by:º    ôpé¥/      results.table.groupBy.option.lastName_firstNameΩ    ∆Q⁄u      first and last nameæ    va	^%      results.table.groupBy.option.lastNameø      ‹÷’∫	      last name¿      ﬁ_‡[*      results.table.groupBy.option.identificator¡     Í$L      nickname¬   5N-¶"      results.table.groupBy.option.email√     €4`ª      email addressƒ      pjC˚0      results.table.groupBy.reports_not_available_info≈   ¥‘Û#è      You can download reports only when "Group results" option hasn't been selected. If you need this feature inform us about it via a contact form.∆    ‘h∑’9      results.table.too_many_results.reports_not_available_info«      ©Û¿Å      You can download reports when table contains no more than %s results. Use filters and reduce the number of results in this table.»      ˙àE=      results.table.too_many_results_pdf.reports_not_available_info…      p‹∂Êã      You can download results table in PDF format only if you have less than %s results in the table. Use filters or export data in XLSX or CSV.     >l()      text.wait_for_results.all_results_archiveÀ      ˝¬>2      Feature will be available after results are loadedÃ     ìÍÕ∑"      results.table.mail.status.NOT_SENTÕ     óÑÌ˝      results.table.mail.status.SENTŒ     éüw#      results.table.mail.status.SCHEDULEDœ    u^r©      In progress–    ~r      results.table.mail.status.ERROR—    ˆì       results.table.testStatus.SETUP“     e<%Ù      Setup in progress”      ûËG&(      results.table.testStatus.SETUP_CONFIRMED‘   ÿ>Î(      Settings confirmed - awaiting activation’   €;@É      results.table.testStatus.ACTIVE÷    ÁêZ      Active◊     £äí&      results.table.testStatus.ACCESS_CLOSEDÿ     y\;Á      EndedŸ      OZk!      results.table.testStatus.FINISHED⁄      Çz◊      results.table.testStatus.FROZEN€    <Vöƒ      Frozen‹     ÿe .      results.select.option.not_saved_table_settings›     Œÿ˜Ÿ	      Not savedﬁ      ˚ŸÖ&      results.caption.table_settings.save_asﬂ     6ƒ¡      Save‡   6ã¸Ô%      results.caption.table_settings.delete·      ·‚“      Delete‚     "å6Ö$      results.text.confirm_settings_delete„    ûOî8      Are you sure you want to delete selected table settings?‰   ò„Á=$      results.label.default_table_settingsÂ   úÛR      All resultsÊ    Ê!N|      results.table.link.detailsÁ     öRèô      DetailsË    „_\”      results.table.text.loadingÈ     ß(îb      Loading data, please wait.Í     Ñ o◊(      results.table.detailsNotAvailableTooltipÎ   ‹ìúÌ(      Upgrade your subscription to see detailsÏ   £âW0      access.warning.email_sending_verification_neededÌ   ∆å∏çl      Test activation not possible! You're attempting to send multiple emails. Contact us to verify it's not Spam.Ó   zÍ≥R      mytests.table.column.nameÔ      òFÉ˛      Name   ì÷Œ       mytests.table.column.descriptionÒ   {ı	B      DescriptionÚ    ∂qh1!      mytests.table.column.creationTimeÛ      œ
+      Created onÙ     í¸B      mytests.table.column.statusı    ˚Èª      Statusˆ     ~Z˝y!      mytests.table.column.categoryName˜      ˜G]>      Category name¯      Ã∆£>      mytests.table.link.details˘     [:4„      Open˙   €â\!      unusedcodes.table.column.passcode˚      â78       Access code¸    ÇÔ(Û      unusedcodes.table.column.email˝     ¥.≥∞      Email˛      U!u!      unusedcodes.table.column.testnameˇ      Ê,∑      label_firstname_asc    lµì      First name: from A    –VÚ      label_firstname_desc  _t_      First name: from Z     ÏT‹      label_lastname_asc     \€      Last name: from A     †w”Á      label_lastname_desc   πypè      Last name: from Z     õXá      label_identificator_asc   ◊ã;      Nickname: from A	  µ{Ã      label_identificator_desc
+  tÏP      Nickname: from Z  }g      label_gender_asc  «yQ3      Sex: from Female  t¨˝ä      label_gender_desc     ﬁ*x”      Sex: from Male    ã“      label_age_asc     √àâ      Age: from youngest    …jé      label_age_desc    i°      Age: from oldest  .Ø‰È      label_street_asc  ’ﬂM      Street: From A    
+ô›.      label_street_desc     x…
+      Street: from Z    ∆ﬂóÌ      label_city_asc    \¯Éø      City/town: from A     ïòBî      label_city_desc   /¸ˆƒ      City/town: from Z     ì‡X¯      label_email_asc   àaOP      Email: from A     FÔLC      label_email_desc  {ú±      Email: from Z     XºØQ      label_score_asc    /hÍ·      label_score_desc!  ‘‹Ö…      label_percents_asc"    Éu¬      label_percents_desc#   ∫¥É      label_certificatestatus_asc$    y≥      label_certificatestatus_desc%  u3¿˙      label_termnumber_asc&  7eã      label_termnumber_desc'     Ùõ      label_mark_asc(    E’ñ      label_mark_desc)   xÎÀ      label_attemptstarttime_asc*    î7∆      label_attemptstarttime_desc+   œ[‚!      label_currentquestionposition_asc,      ÕU5"      Current question no.: lowest first-    x·Ñô"      label_currentquestionposition_desc.    ög`#      Current question no.: highest first/   (n"      label_attemptnumber_asc0   S¨      label_attemptnumber_desc1  iÚU<      label_givenanswerscount_asc2   ;A”      Answers provided: least first3     ·:ö      label_givenanswerscount_desc4  PFÇx      Answers provided: most first5  Ub<      label_additional_asc6  ∑k#›      Additional info: from A7   ñ€ë9      label_additional_desc8     TÃ8Ù      Additional info: from Z9   H„ïû      label_phone_asc:   °Î=Y      Phone number: lowest first;    ¡›®ï      label_phone_desc<  äxƒ∆      Phone number: highest first=   jAì±      label_personalid_asc>  jjúP      ID no.: lowest first?  1Åñ      label_personalid_desc@     ¡Æ¸      ID no.: highest firstA     ö@ßn      label_organizationname_ascB    XN<Ü      Organization name: from AC     òµ|      label_organizationname_descD   +RØã      Organization name: from ZE     Da∂      popupErrorIconPathF    —Æë      /images/info_popup.pngG    DΩ˜√      greenCheckboxIconPathH     @Y‹       /images/green_checkbox_popup.pngI  ÀÏÑ      button.delete.allJ     P¬      button.edit.allK   h˙Æ¸      EditL  Ûqie#      text.personal_data.detailed_resultsM   Q˜´      Personal dataN     G;"      text.contact_data.detailed_resultsO    ÿF˛ª      Contact detailsP   V†[√      text.additional_info.allQ  °Äa      Additional informationR    %î˛#      text.attemptStartTime.allS     B®O=      text.attemptEndTime.allT   ˆ‰°"      label.passed_info.detailed_resultsU    ¥˘Vx      Pass/Fail informationV     nSå=      text.points_result_brackets.allW   ıÃ{      Score (pts)X   ≈KÆ       text.percent_result_brackets.allY  C[ù-      text.percent_result_per_category_brackets.allZ     ,#ë      Score per category (%)[    †V‡,      text.points_result_per_category_brackets.all\  éœìµ      Score per category (pts)]  B¨™      text.mark.all^     ñÍ›Á      text.descriptive_mark.all_     › Ì      text.test_attempt.all`     ÷•ì*      text.showAnswersAndPoints.detailed_resultsa    j≠I¢'      Correct answers and points per questionb   ÆYﬂM      text.test_variant.allc     ±?¥ö4      text.popup.download_test_answers_popup.title.resultsd  2•ﬂÆ      Answer sheet contente  ¬˝Fs      button.download.allf   KÜHˇ      Downloadg  ©6Ÿπ      button.cancel.allh     &Ùê⁄      Canceli    áºŒ      button.download_menu.resultsj  ˝
+På      Export resultsk    ˘
+zV1      button.download_certificates_for_selected.resultsl     e0ø–      Download certificatesm     3iÍ∂8      text.popup.download_detailed_results_popup.title.resultsn  ∆¬∫      Results sheet contento     T} 2      label.response_time_for_questions.detailed_resultsp    yπﬂì$      Answer time per particular questionsq  ı˛B¥3      label.points_per_max_for_questions.detailed_resultsr   °ÌÜ&      Points scored for particular questionss    |U∏      text.norespselected.resultst   îØ⁄~      Select at least one respondentu    ∞î!õ       text.calendar.su.time_parametersv  átb`       text.calendar.mo.time_parametersw  Öféó       text.calendar.tu.time_parametersx  öT©4       text.calendar.we.time_parametersy  Xó˝5       text.calendar.th.time_parametersz  püÖ#       text.calendar.fr.time_parameters{  Ç∫çé       text.calendar.sa.time_parameters|  ?Ó—3%      text.calendar.january.time_parameters}     Èˆ≠«      January~   ìÍ}"&      text.calendar.february.time_parameters     `uÒ      FebruaryÄ  É'˙ß#      text.calendar.march.time_parametersÅ   ⁄¨L~      MarchÇ     ≠√à∏#      text.calendar.april.time_parametersÉ    ®(      AprilÑ     ˙˘Òú!      text.calendar.may.time_parametersÖ     Pó      MayÜ   ≈k}"      text.calendar.june.time_parametersá    ÌÂ‹      Juneà  ªÆÙ"      text.calendar.july.time_parametersâ    û‘=E      Julyä  Ëyå$      text.calendar.august.time_parametersã  =ˆMö      Augustå    ñxÒN'      text.calendar.september.time_parametersç   —äqú	      Septemberé     §!óò%      text.calendar.october.time_parametersè     ªú-§      Octoberê   m∂o&      text.calendar.november.time_parametersë    ü,óÊ      Novemberí  “–„‰&      text.calendar.december.time_parametersì    ˝ısã      Decemberî  “Ôt∑0      text.datepicker.button.apply.all_results_archiveï  NXa      Confirmñ   	fV1      text.datepicker.button.cancel.all_results_archiveó     X¿Z.      text.datepicker.label.from.all_results_archiveò    J8•y      Fromô  ä¯Û˝,      text.datepicker.label.to.all_results_archiveö  ÕNœ5      text.datepicker.label.customRange.all_results_archiveõ     zÑÈÕ      Customú    MèΩK.      text.datepicker.dateformat.all_results_archiveù    T¥k      YYYY-MM-DD HH:mmû  ≈„Ú‹6      text.datepicker.button.clearfilter.all_results_archiveü    µõè¯      Clear filter†  y~Êø<      label.group_by_filter.selectFilterColumn.all_results_archive°  3A¢D	      No filter¢     EÈ;      lable.choose_value.searchTextFilterView.all_results_archive£   †’y      label.add_new_field.start_page§    è44      Add a field•   j{J      label.text.form_settings¶  £»¿
+      text fieldß    ◊{      label.email.form_settings®     œ.h–      label.radio.form_settings©     #ï>      single choice™     ¶X≠      label.number.form_settings´    ﬂ¸'œ      label.textarea.form_settings¨  §qz	      text area≠     *Ä%      label.select.form_settingsÆ    æéÁ      drop-down listØ    ˇyD      table.manageCustomFields.column.label.customize_personal_data_fields∞  ˘≠kD      Label±     ùJl“C      table.manageCustomFields.column.type.customize_personal_data_fields≤   'Åôa      Type≥  Á°kÕF      table.manageCustomFields.column.actions.customize_personal_data_fields¥    ¯7w      Actionsµ   êßNå9      label.add_new_custom_field.customize_personal_data_fields∂     |Èf'      Add custom field∑  Z˛>?      label.add_new_custom_field.popup.customize_personal_data_fields∏   £| 	      Add fieldπ     ÚˆÉ;5      label.fieldLabel.popup.customize_personal_data_fields∫     }ÄΩÎ4      label.fieldType.popup.customize_personal_data_fieldsª  ¨Êìæ9      title.confirm_delete_popup.customize_personal_data_fieldsº     ƒNÔ      Delete custom fieldΩ   Dô—>      title.text.confirm_delete_popup.customize_personal_data_fieldsæ    %j)Qí      Warning! If you delete this field, you will also remove it <b>from all tests</b> where it's been used. Are you sure you want to delete <b>{0}</b>?ø    O#÷o:      label.add_new_select_option.customize_personal_data_fields¿    $˛º§
+      Add option¡    ªh6      label.edit_select_field.customize_personal_data_fields¬    w·ˆ‚%      Edit list of available choice options√     ãÓN      button.save.allƒ   Ç¬”’      error.input.field.required.all≈    qÑV¸      Required field∆    ó&Ãô>      error.select_options_list_empty.customize_personal_data_fields«    òAuú       Enter at least one choice option»  t<Gµ(      text.no_data_will_be_required.start_page…  ˘Ôcñ)      No data will be required from respondents      5“7w,      label.select.add_new_custom_field.start_pageÀ  ≥‚º      ---- Add new custom field ----Ã    7ævv%      text.CustomizePersonalDataFields.naviÕ     Ì[      Respondent data fieldsŒ    ©l¡8      label.backToStartPageLink.customize_personal_data_fieldsœ  ‹´,      Return to settings–     ± @      label.add_new_select_options_bulk.customize_personal_data_fields—  ∂›˝      Enter multiple options“    éıC      label.add_new_select_options_bulk.p1.customize_personal_data_fields”   q2_      Enter possible choice options in the text field below. Every option must be in a separate line.‘   ÎIà‰      button.add.all’    |Â¥ú      Add÷   »√#£9      error.field_already_exists.customize_personal_data_fields◊     ”)∏*      Field with these properties already existsÿ    6Aı      label.next.detailed_resultsŸ   2tÎ      Next⁄  ´X      label.previous.detailed_results€    ¡˜_      Previous‹  íÿŸ‰      label.go_to.detailed_results›  Æı?Â      Go to respondentﬁ  ØºYp"      label.anonymous_respondent.resultsﬂ    G˛}ø	      [no data]‡     ˙èB      error.invalidcharactersinfieldlabel.customize_personal_data_fields·    ∞Â1      Field name can't contain characters:  & < > " _ '‚     ∂	Áü      button.move_up.all„    wy5      Move up‰   °πê      button.move_down.allÂ  ÌÈß·	      Move downÊ     -Pì%      label.manage_custom_fields.start_pageÁ     G      Manage custom fieldsË  ó|4á      text.field_column.start_pageÈ  Üµ•      FieldÍ     ·≈∞„       text.mandatory_column.start_pageÎ  G∞-	      MandatoryÏ     I∞º      label.paginator_state.resultsÌ     ·4U¢      Result page:Ó  _2äˆ      button.zoom_image.allÔ     ƒKâ
+      Zoom image    Öq»Œ      text.zoom_loading.allÒ     FÌ!..      Loading enlarged image. It may take a while...Ú    ﬁãO·/      error.assetuploadfailed.internalservererror.allÛ   ˜ë˘,0      File upload failed due to internal server error.Ù  zkäÂ(      error.assetuploadfailed.formatorsize.allı  ¨»’-^      File too big or in an invalid format. Max. file size is 10MB. Try again with a different file.ˆ    µê˙-      error.assetuploadfailed.unsupportedformat.all˜     Ù5Æ˙      File format is not supported.¯     ÑL‰.      label.sort_by.all˘     Uπ∏õ      Sort by:˙  ç ^µ       label.filter_placeholder.results˚  `T.5#      label.paginator_rows_select.results¸   0Ù@_      Results per page˝  Ò:˙      label.paginator_rows_of.results˛   ‘Ò›®'      text.upload_in_progress.title.popup.allˇ   Û?˙      File upload in progress    ÒÃM!      text.upload_in_progress.popup.all     ≠≥;      Uploading file - it may take up to a minute. Please wait...    bü       text.max_words_count_reached.all  ºwW⁄      Word count limit reached.     í\•Ù!      ms_teams_share.table.link.details     “Ã3∞      Select    &éï'      text.descriptive.autosave.test_question   ¢çÄê      Answer auto-saved at:     $˛]À      button.close_zoom.all	     ï˛¨y
+      Close zoom
+    ~NıÈ      text.table.no.results.label   
+«¿      No results to show        !                   Ô%,â                   ≥Oåc            Ø¬0∞IÙ$KEÆ˙ö        á&’™å!´!     “ƒÄ¯  V                K       –    ±   7   ¿   ’¥      J   ’¥      J   ’¥      J   ’¥   	   J
+   ’¥      J   ’¥      J   ’¥      J   ’¥      J   ’¥      J   ’¥      J   ’¥      J   ’¥      J   ’¥      J   ’¥      J   ’¥      J    ’¥   !   J"   ’¥   #   J$   ’¥   %   J&   ’¥   '   J(   ’¥   )   J*   ’¥   +   J,   ’¥   -   J.   ’¥   /   J0   ’¥   1   J2   ’¥   3   J4   ’¥   5   J6   ’¥   7   J8   ’¥   9   J:   ’¥   ;   J<   ’¥   =   J>   ’¥   ?   J@   ’¥   A   JB   ’¥   C   JD   ’¥   E   JF   ’¥   G   JH   ’¥   I   JJ   ’¥   K   JL   ’¥   M   JN   ’¥   O   JP   ’¥   Q   JR   ’¥   S   JT   ’¥   U   JV   ’¥   W   JX   ’¥   Y   JZ   ’¥   [   J\   ’¥   ]   J^   ’¥   -   J_   ’¥   `   Ja   ’¥   b   Jc   ’¥   d   Je   ’¥   f   Jg   ’¥   d   Jh   ’¥   f   Ji   ’¥   d   Jj   ’¥   f   Jk   ’¥   l   Jm   ’¥   n   Jo   ’¥   d   Jp   ’¥   f   Jq   ’¥   d   Jr   ’¥   f   Js   ’¥   t   Ju   ’¥   v   Jw   ’¥   x   Jy   ’¥   z   J{   ’¥   |   J}   ’¥   ~   J   ’¥   Ä   JÅ   ’¥   Ç   JÉ   ’¥   Ñ   JÖ   ’¥   Ü   Já   ’¥   à   Jâ   ’¥   ä   Jã   ’¥   å   Jç   ’¥   é   Jè   ’¥   ê   Jë   ’¥   í   Jì   ’¥   î   Jï   ’¥   ñ   Jó   ’¥   ò   Jô   ’¥   ö   Jõ   ’¥   ú   Jù   ’¥   û   Jü   ’¥   †   J°   ’¥   ¢   J£   ’¥   §   J•   ’¥   ¶   Jß   ’¥   ®   J©   ’¥   ™   J´   ’¥   ¨   J≠   ’¥   Æ   JØ   ’¥   ∞   J±   ’¥   ≤   J≥   ’¥   ¥   Jµ   ’¥   ∂   J∑   ’¥   ∏   Jπ   ’¥   ∫   Jª   ’¥   º   JΩ   ’¥   æ   Jø   ’¥   ¿   J¡   ’¥   ¬   J√   ’¥   ƒ   J≈   ’¥   ∆   J«   ’¥   »   J…   ’¥       JÀ   ’¥   Ã   JÕ   ’¥   Œ   Jœ   ’¥   –   J—   ’¥   “   J”   ’¥   ‘   J’   ’¥      J÷   ’¥      J◊   ’¥   ÿ   JŸ   ’¥   ⁄   J€   ’¥   ‹   J›   ’¥   ﬁ   Jﬂ   ’¥   ‡   J·   ’¥   ‚   J„   ’¥   ‚   J‰   ’¥   Â   JÊ   ’¥   Á   JË   ’¥   È   JÍ   ’¥   Î   JÏ   ’¥   Ì   JÓ   ’¥   Ô   J   ’¥   Ò   JÚ   ’¥   Û   JÙ   ’¥   ı   Jˆ   ’¥   ˜   J¯   ’¥   ˘   J˙   ’¥   ˚   J¸   ’¥   ˝   J˛   ’¥   ˇ   J   ’¥     J  ’¥     J  ’¥     J  ’¥     J  ’¥   Q   J	  ’¥   
+  J  ’¥     J  ’¥     J  ’¥     J  ’¥     J  ’¥     J  ’¥     J  ’¥     J  ’¥     J  ’¥     J  ’¥     J  ’¥      J!  ’¥   "  J#  ’¥   $  J%  ’¥   &  J'  ’¥   (  J)  ’¥   t   J*  ’¥   ö   J+  ’¥   v   J,  ’¥   ú   J-  ’¥   x   J.  ’¥   û   J/  ’¥   ä   J0  ’¥   ∞   J1  ’¥   Ç   J2  ’¥   ®   J3  ’¥   ~   J4  ’¥   §   J5  ’¥   6  J7  ’¥   8  J9  ’¥   |   J:  ’¥   ¢   J;  ’¥   <  J=  ’¥   >  J?  ’¥   @  JA  ’¥   B  JC  ’¥   D  JE  ’¥   F  JG  ’¥   H  JI  ’¥   J  JK  ’¥   L  JM  ’¥   N  JO  ’¥   P  JQ  ’¥   R  JS  ’¥      JT  ’¥   U  JV  ’¥   W  JX  ’¥   Y  JZ  ’¥   [  J\  ’¥   7   J]  ’¥   3   J^  ’¥   _  J`  ’¥   a  Jb  ’¥   /   Jc  ’¥   d  Je  ’¥   f  Jg  ’¥   ?   Jh  ’¥   ;   Ji  ’¥   5   Jj  ’¥   k  Jl  ’¥   K   Jm  ’¥   n  Jo  ’¥   p  Jq  ’¥   r  Js  ’¥   t  Ju  ’¥   v  Jw  ’¥   x  Jy  ’¥   z  J{  ’¥   |  J}  ’¥   ~  J  ’¥   Ä  JÅ  ’¥   Ç  JÉ  ’¥   Ñ  JÖ  ’¥   Ü  Já  ’¥   à  Jâ  ’¥   ä  Jã  ’¥   å  Jç  ’¥   é  Jè  ’¥   ê  Jë  ’¥   í  Jì  ’¥   î  Jï  ’¥   ñ  Jó  ’¥   ò  Jô  ’¥   ö  Jõ  ’¥   ú  Jù  ’¥   û  Jü  ’¥   †  J°  ’¥   ¢  J£  ’¥   §  J•  ’¥   ¶  Jß  ’¥   r  J®  ’¥   ©  J™  ’¥   ´  J¨  ’¥   ≠  JÆ  ’¥   Ø  J∞  ’¥   ±  J≤  ’¥   ≥  J¥  ’¥   ≥  Jµ  ’¥   ∂  J∑  ’¥   ∏  Jπ  ’¥   Ã   J∫  ’¥   ª  Jº  ’¥   Ω  Jæ  ’¥   ø  J¿  ’¥   ¡  J¬  ’¥   √  Jƒ  ’¥   ≈  J∆  ’¥   «  J»  ’¥   …  J   ’¥   À  JÃ  ’¥   √  JÕ  ’¥   ≈  JŒ  ’¥   œ  J–  ’¥   —  J“  ’¥   ”  J‘  ’¥   ’  J÷  ’¥   È   J◊  ’¥   ÿ  JŸ  ’¥   ⁄  J€  ’¥   ‹  J›  ’¥   ﬁ  Jﬂ  ’¥   ‡  J·  ’¥   ‚  J„  ’¥   ‰  JÂ  ’¥   Ê  JÁ  ’¥   Ë  JÈ  ’¥   Í  JÎ  ’¥   Ï  JÌ  ’¥   Ó  JÔ  ’¥     JÒ  ’¥   Ú  JÛ  ’¥   Ù  Jı  ’¥   ˆ  J˜  ’¥   ¯  J˘  ’¥   ˙  J˚  ’¥   ¸  J˝  ’¥   ˛  Jˇ  ’¥      J  ’¥     J  ’¥     J  ’¥     J  ’¥     J	  ’¥   
+  J  ’¥     J  ’¥   ¿   J  ’¥     J  ’¥     J  ’¥     J  ’¥     J  ’¥     J  ’¥     J  ’¥     J  ’¥     J  ’¥     J   ’°*`P+`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê ;`Pê H`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0`Pê0P    3ıÿ   `      @    X ÿ             d  	  m  
+                          M    F                     "  !  $  #  &  %  (  '  *  )  ,  +  .  -  0  /  2  1  4  3  6  5  8  7  :  9  <  ;  >  =  @  ?    A  1  B  D  C  F  E  H  G  J  I  L  K  N  M  P  O  R  Q  T  S  U  W  V  Y  X  [  Z  ]  \  ^  _  `  a  c  b  e  d  f  g  h  i  k  j  m  l  o  n  q  p  s  r  u  t  w  v  y  x  {  z  }  |    ~  Å  Ä  É  Ç  Ö  Ñ  á  Ü  â  à  ã  ä  ç  å  è  é  ë  ê  ì  í  ï  î  ó  ñ  ô  ò  õ  ö  ù  ú  ü  û  °  †  £  ¢  •  §  ß  ¶  ©  ®  ´  ™  ≠  ¨  Ø  Æ  ±  ∞  ≥  ≤  µ  ¥  ∑  ∂  π  ∏  ª  ∫  Ω  º  ø  æ  ¡  ¿  √  ¬  ≈  ƒ  «  ∆  …  »  À     Ã  Õ  œ  Œ    –  “  —  ‘  ”  ÷  ’  ÿ  ◊  Ÿ  €  ⁄  ›  ‹  ﬂ  ﬁ  ·  ‡  „  ‚  Â  ‰  Á  Ê  È  Ë  Î  Í  Ì  Ï  Ô  Ó  Ò    Û  Ú  ı  Ù  ˜  ˆ  ˘  ¯  ˚  ˙  ˝  ¸  ˛    ˇ          
+ 	                        ! " # $ % & ' ( ) * , + . - / 0 2 1 4 3 6 5 8 7 : 9 < ; > = @ ? B A D C F E H G I K J M L O N Q P R S U T W V X Z Y \ [ ] ^ _ a ` b d c f e h g j i l k n m p o r q t s û u  v ﬁ w é x — y [
+ z ä { } |  ~ Å Ä É Ç Ö Ñ á Ü â à ã ä ç å è é ë ê ì í ï î ñ ò ó ÿ ô õ ö ù ú ü û ° † ¢ § £ ¶ • ß © ®   ™ ¨ ´ Æ ≠ ∞ Ø ≤ ± ¥ ≥ ∂ µ ∏ ∑ π ∫ º ª æ Ω ¿ ø ¬ ¡ √ ≈ ƒ « ∆ … » À   Õ Ã œ Œ — – ” “ ’ ‘ ◊ ÷ Ÿ ÿ € ⁄ › ‹ ﬂ ﬁ · ‡ „ ‚ Â ‰ Á Ê È Ë Î Í Ì Ï Ô Ó Ò  Û Ú ı Ù ˜ ˆ ˘ ¯ ˙ ¸ ˚  ˝ ˇ ˛          	   
+ ˇXÑ    !             ùH©¿       äT      äT                 5°›–¨~ÏK˘[®÷Î      ldçÜjdçÜjE∏‘Ddçπ    m    O^partitionKey=%28https%2Ctestportal.net%29,:https://static.testportal.net/transl.html?lang=en&v=a8b37c81d181 necko:classified 1 strongly-framed 1 security-info FnhllAKWRHGAlo+ESXykKAAAAAAAAAAAwAAAAAAAAEaphjojH6pBabDSgSnsfLHeAAAAAgAAAAAAAAAAAAAAAAAAAAEAOQFmCjImkVxP+7sgiYWmMt8FvcOXmlQiTNWFiWlrbpbqgwAAAAAAAAZHMIIGQzCCBSugAwIBAgIMan6GDmXyuE0hmpKSMA0GCSqGSIb3DQEBCwUAMEwxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSIwIAYDVQQDExlBbHBoYVNTTCBDQSAtIFNIQTI1NiAtIEcyMB4XDTIyMDYwNzE0MjMwMFoXDTIzMDcwOTE0MjI1OVowGzEZMBcGA1UEAwwQKi50ZXN0cG9ydGFsLm5ldDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMkZ6Ar80ZmHisEBJvC6CIBv/f/Sf3jx6yA5U/B3u6gzqKsEz83gyRrfV8hwUwadPEDQ6FPzLNBP+oztQrzO2DNkNQWFwGpmtQz/RCSm163o6+FToqKhFO22fT47c5SW0ftb+H76JFV2KA7jVfAaGHE1TS6brOBN2Xlh/6emzKZ0khhFjH7glU5isL3pVWdovrZv/f0CqQvHqLDdXLEhxPtkoaZj6dq85k7Uuqy6krAoVZIoFxquknvBiCHJ6aQ3/n/onSMBRtehS4s+vENULKMc/aE7A3InGTHSAMUC6AUeJo/Z62jIKNXShY8UlkWfS7IfugLYVKRo6gpwJUWty5ECAwEAAaOCA1QwggNQMA4GA1UdDwEB/wQEAwIFoDCBigYIKwYBBQUHAQEEfjB8MEMGCCsGAQUFBzAChjdodHRwOi8vc2VjdXJlLmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc2FscGhhc2hhMmcycjEuY3J0MDUGCCsGAQUFBzABhilodHRwOi8vb2NzcDIuZ2xvYmFsc2lnbi5jb20vZ3NhbHBoYXNoYTJnMjBXBgNVHSAEUDBOMEIGCisGAQQBoDIBCgowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCAYGZ4EMAQIBMAkGA1UdEwQCMAAwPwYDVR0fBDgwNjA0oDKgMIYuaHR0cDovL2NybC5nbG9iYWxzaWduLmNvbS9ncy9nc2FscGhhc2hhMmcyLmNybDArBgNVHREEJDAighAqLnRlc3Rwb3J0YWwubmV0gg50ZXN0cG9ydGFsLm5ldDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwHwYDVR0jBBgwFoAU9c3VPAhQ+WpPOreX2laD5mnSaPcwHQYDVR0OBBYEFA7QanaNBL1hR4VKYfS8iFoiMSxzMIIBfgYKKwYBBAHWeQIEAgSCAW4EggFqAWgAdgDoPtDaPvUGNTLnVyi8iWvJA9PL0RFr7Otp4Xd9bQa9bgAAAYE+jCaMAAAEAwBHMEUCIQCaoVqpW0WfoZzornRqODt1ECz5xRUAg3rj3USyAzgV/AIgRSqb54V5FnZ+NZ8lWEjC7zzCyoCxhuxqNa8AnPg+88YAdgA1zxkbv7FsV78PrUxtQsu7ticgJlHqP+Eq76gDwzvWTAAAAYE+jCaRAAAEAwBHMEUCIQDFOieqj3ku3yrpZcphT8GYKsZkYldFKHJ5VT9cF7YxZwIgK/IBVg3U3CrOxrRv9mFDOGCgEVOpnOmFjWu6OQgQCIMAdgBVgdTCFpA2AUrqC5tXPFPwwOQ4eHAlCBcvo6odBxPTDAAAAYE+jCajAAAEAwBHMEUCIQD30NsfEr2+KiY1sUY24C3NSX3+kY/egg0yPykjx3z0VAIgR57XZk+1BmiT6jpfEJYahp+l084uhsDlHG0eBFeEwuMwDQYJKoZIhvcNAQELBQADggEBALjknmmp7xK9DvnhFdyQF+98JvUFQpgBdzlX9L7/Wh5QopELU1s02nhD2oAvYojsy8ICusWgub7a44tciMs9vYOteimujWZSpS/0q2UnWxlgbddAOlcuWs+7fO3MnMIbsE1BwuxXpKuu5uFHE0j2VHnCord/WGnJbCmk3VcGY7Ziab9WhjsdSKLkuPwzgbTJf6d1nUAUuL3ojCuU/JCH2754FCMaUEmMG+IBOVIrmLE0xhaf1I2gXXrABi33mhEee+as6JFSso+Hoiv7O7sJK79TWFBGXa8O0qUCcD2jx77a9g8rqcPwHhauT7Wzze72bDhZ1keYPc92AAFLF0vjR9gTAQAEAAAAAAABAQAAAAAAAAZ4MjU1MTkAAAAOUlNBLVBTUy1TSEEyNTYAA2YKMiaRXE/7uyCJhaYy3wW9w5eaVCJM1YWJaWtuluqDAAAAAAAABkcwggZDMIIFK6ADAgECAgxqfoYOZfK4TSGakpIwDQYJKoZIhvcNAQELBQAwTDELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExIjAgBgNVBAMTGUFscGhhU1NMIENBIC0gU0hBMjU2IC0gRzIwHhcNMjIwNjA3MTQyMzAwWhcNMjMwNzA5MTQyMjU5WjAbMRkwFwYDVQQDDBAqLnRlc3Rwb3J0YWwubmV0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyRnoCvzRmYeKwQEm8LoIgG/9/9J/ePHrIDlT8He7qDOoqwTPzeDJGt9XyHBTBp08QNDoU/Ms0E/6jO1CvM7YM2Q1BYXAama1DP9EJKbXrejr4VOioqEU7bZ9PjtzlJbR+1v4fvokVXYoDuNV8BoYcTVNLpus4E3ZeWH/p6bMpnSSGEWMfuCVTmKwvelVZ2i+tm/9/QKpC8eosN1csSHE+2ShpmPp2rzmTtS6rLqSsChVkigXGq6Se8GIIcnppDf+f+idIwFG16FLiz68Q1Qsoxz9oTsDcicZMdIAxQLoBR4mj9nraMgo1dKFjxSWRZ9Lsh+6AthUpGjqCnAlRa3LkQIDAQABo4IDVDCCA1AwDgYDVR0PAQH/BAQDAgWgMIGKBggrBgEFBQcBAQR+MHwwQwYIKwYBBQUHMAKGN2h0dHA6Ly9zZWN1cmUuZ2xvYmFsc2lnbi5jb20vY2FjZXJ0L2dzYWxwaGFzaGEyZzJyMS5jcnQwNQYIKwYBBQUHMAGGKWh0dHA6Ly9vY3NwMi5nbG9iYWxzaWduLmNvbS9nc2FscGhhc2hhMmcyMFcGA1UdIARQME4wQgYKKwYBBAGgMgEKCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAIBgZngQwBAgEwCQYDVR0TBAIwADA/BgNVHR8EODA2MDSgMqAwhi5odHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzL2dzYWxwaGFzaGEyZzIuY3JsMCsGA1UdEQQkMCKCECoudGVzdHBvcnRhbC5uZXSCDnRlc3Rwb3J0YWwubmV0MB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAfBgNVHSMEGDAWgBT1zdU8CFD5ak86t5faVoPmadJo9zAdBgNVHQ4EFgQUDtBqdo0EvWFHhUph9LyIWiIxLHMwggF+BgorBgEEAdZ5AgQCBIIBbgSCAWoBaAB2AOg+0No+9QY1MudXKLyJa8kD08vREWvs62nhd31tBr1uAAABgT6MJowAAAQDAEcwRQIhAJqhWqlbRZ+hnOiudGo4O3UQLPnFFQCDeuPdRLIDOBX8AiBFKpvnhXkWdn41nyVYSMLvPMLKgLGG7Go1rwCc+D7zxgB2ADXPGRu/sWxXvw+tTG1Cy7u2JyAmUeo/4SrvqAPDO9ZMAAABgT6MJpEAAAQDAEcwRQIhAMU6J6qPeS7fKullymFPwZgqxmRiV0UocnlVP1wXtjFnAiAr8gFWDdTcKs7GtG/2YUM4YKARU6mc6YWNa7o5CBAIgwB2AFWB1MIWkDYBSuoLm1c8U/DA5Dh4cCUIFy+jqh0HE9MMAAABgT6MJqMAAAQDAEcwRQIhAPfQ2x8Svb4qJjWxRjbgLc1Jff6Rj96CDTI/KSPHfPRUAiBHntdmT7UGaJPqOl8QlhqGn6XTzi6GwOUcbR4EV4TC4zANBgkqhkiG9w0BAQsFAAOCAQEAuOSeaanvEr0O+eEV3JAX73wm9QVCmAF3OVf0vv9aHlCikQtTWzTaeEPagC9iiOzLwgK6xaC5vtrji1yIyz29g616Ka6NZlKlL/SrZSdbGWBt10A6Vy5az7t87cycwhuwTUHC7Fekq67m4UcTSPZUecKit39YaclsKaTdVwZjtmJpv1aGOx1IouS4/DOBtMl/p3WdQBS4veiMK5T8kIfbvngUIxpQSYwb4gE5UiuYsTTGFp/UjaBdesAGLfeaER575qzokVKyj4eiK/s7uwkrv1NYUEZdrw7SpQJwPaPHvtr2Dyupw/AeFq5PtbPN7vZsOFnWR5g9z3YAAUsXS+NH2GYKMiaRXE/7uyCJhaYy3wW9w5eaVCJM1YWJaWtuluqDAAAAAAAABFEwggRNMIIDNaADAgECAgsEAAAAAAFETvA2MTANBgkqhkiG9w0BAQsFADBXMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEQMA4GA1UECxMHUm9vdCBDQTEbMBkGA1UEAxMSR2xvYmFsU2lnbiBSb290IENBMB4XDTE0MDIyMDEwMDAwMFoXDTI0MDIyMDEwMDAwMFowTDELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExIjAgBgNVBAMTGUFscGhhU1NMIENBIC0gU0hBMjU2IC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDaAezk7HNg+36ParfGF+OSZDLUrADZog+57e5riobKkmfZdNddRwI8j0DWnm0UzcPaKTmnDwUKaKJmGh7Esot2WOWrXR2PQLM5i+8eg30i0OOpAC7sU89iGYVEKEzAJ8t7DuwQZAAQpAXMoHK+QWwxW0jksey5I+tVTdB9YkqltKWkWYXFJZGm/qYJnwYQbY+BDGRAXnMAmuAuZZhUEABwmMjh7TRf2JzHDcDWI1lF/P5VeobulGAi8a7R5lVG9pnFGwh0X6ywZISPiTgcoaeQIU8Cbr3gYWfU+EKHDwr3yQRtKqkv70Kl392jU9uYHoH5mnJ7Wt5PPn+iWKDiF61nAgMBAAGjggEjMIIBHzAOBgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBADAdBgNVHQ4EFgQU9c3VPAhQ+WpPOreX2laD5mnSaPcwRQYDVR0gBD4wPDA6BgRVHSAAMDIwMAYIKwYBBQUHAgEWJGh0dHBzOi8vd3d3LmFscGhhc3NsLmNvbS9yZXBvc2l0b3J5LzAzBgNVHR8ELDAqMCigJqAkhiJodHRwOi8vY3JsLmdsb2JhbHNpZ24ubmV0L3Jvb3QuY3JsMD0GCCsGAQUFBwEBBDEwLzAtBggrBgEFBQcwAYYhaHR0cDovL29jc3AuZ2xvYmFsc2lnbi5jb20vcm9vdHIxMB8GA1UdIwQYMBaAFGB7ZhpFDZfKiVAvfQTNNKj//P1LMA0GCSqGSIb3DQEBCwUAA4IBAQBgQGgWR+cWjdtcoVYqy/Rcm7Aeokv1ywI/+Auh8qdC1LdM6+NmgPMlQ3guGxdWB1IYy9Go7Ob7cz6kYoyAtNLFEnOj0/oCOL5jPYS4mcHxuvefw0DRWBhTwWLdrxhCfzROxUPVcbAwAMfjkK4/V4aXzuoMEo4icONmp1R/LijL1FTQsx5iZwj5J+HL42a4JBuJaolEZfLZTNJYHIxOwJWh1O9nLzgg6C7/llHwutg9knBHZRyec3K0YAxc4tFzduCvTuLlN6VFL4ojPofHMOYxOHz03VLK81MEJVdWZpToC+7mAxRO7v1tlGSeXs551LKmz0CxRKg+hxle6fghFllTZgoyJpFcT/u7IImFpjLfBb3Dl5pUIkzVhYlpa26W6oMAAAAAAAADeTCCA3UwggJdoAMCAQICCwQAAAAAARVLWsOUMA0GCSqGSIb3DQEBBQUAMFcxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMRAwDgYDVQQLEwdSb290IENBMRswGQYDVQQDExJHbG9iYWxTaWduIFJvb3QgQ0EwHhcNOTgwOTAxMTIwMDAwWhcNMjgwMTI4MTIwMDAwWjBXMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEQMA4GA1UECxMHUm9vdCBDQTEbMBkGA1UEAxMSR2xvYmFsU2lnbiBSb290IENBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2g7mmY3Oo+NPin778YuDJWvqSB/xKrC5lREEvfBj0eJnZs8c3c8bSCvujYmOmq8pgGWr6cctEsurHExwB6E9CjDNFY1P+N3UjFAVHO9Q7sQu9/zpUvKRfeBt1TUwjl5Dc/JB6dVq47KJOlY5OG8GPIhpWypNxadUuGyJzJv5PMrl/Yn1EjySeJbW3HRuk0Rh0Y3HRrJ1DoboGYrVbWzVeBaVounICjjr8iQTT3NUkxOFOhu8HjS1iwWMuXeLsdsfIJGrCVNukM57N3S5cEeRIlFjFnmusa5BJgjIGSvRRqpI1mQq14M0/ywqwWwZQ0oHhefTfPYhaO/q8lKff5OQzwIDAQABo0IwQDAOBgNVHQ8BAf8EBAMCAQYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUYHtmGkUNl8qJUC99BM00qP/8/UswDQYJKoZIhvcNAQEFBQADggEBANZz53xPdtCNv+y6or40xSgytXz8bJwsK70JnlO/a16qEUi25Qijs8o9YU3TRgmzPsOg42NVG/K676054UO5OKPmL4omO++gUFb5xgr9OM3EC3BRlJeYBN/DX5TVFckUQZzEXXVkFQ3/VTDsho//De8suWNG9qr837xp/S4SSGSa4JXwpu8pjwGxFbUMHaX+aSxpJHges6cccWLuysiXrBddisL4R4ZuKsRWMZXQZ4mFK/lspl1GnQyqguSZUd1wt9tWPWHkauFc1vb+Pd5BzAeuY1K/U1P0K+nH/bb3gl+F0kEY24GzBBzFH6SAbxUgyd4MiAod1mZV4vxIySkmaeAAAAABAAAAAmgyAAEAAAAAVnRsc2ZsYWdzMHgwMDAwMDAwMDpzdGF0aWMudGVzdHBvcnRhbC5uZXQ6NDQzXnBhcnRpdGlvbktleT0lMjhodHRwcyUyQ3Rlc3Rwb3J0YWwubmV0JTI5AAA= request-method GET response-head HTTP/2 200 OK
+content-type: application/javascript;charset=utf-8
+server: CloudFront
+date: Fri, 16 Jun 2023 13:48:58 GMT
+x-hostname: testporta000ANT
+cache-control: no-transform,public,max-age=86400,s-maxage=86400
+last-modified: Fri, 16 Jun 2023 13:48:58 GMT
+expires: Sat, 17 Jun 2023 13:48:58 GMT
+content-disposition: inline
+content-language: en
+x-azure-ref: 20230616T134858Z-e9cpcvumt12x1b6qatc65zs5qs00000002pg00000000ff85
+access-control-allow-origin: *
+x-cache: Hit from cloudfront
+via: 1.1 546c7d402795f607dedd15c21228ca4c.cloudfront.net (CloudFront)
+x-amz-cf-pop: MAD56-P4
+x-amz-cf-id: yiUsNmwuaCK6k06yrHNhrpi-FVLTWWEVJA8x8rD9pbUDvABr5AAl2w==
+age: 71252
+X-Firefox-Spdy: h2
+ original-response-headers content-type: application/javascript;charset=utf-8
+server: CloudFront
+date: Fri, 16 Jun 2023 13:48:58 GMT
+x-hostname: testporta000ANT
+cache-control: no-transform,public,max-age=86400,s-maxage=86400
+last-modified: Fri, 16 Jun 2023 13:48:58 GMT
+expires: Sat, 17 Jun 2023 13:48:58 GMT
+content-disposition: inline
+content-language: en
+x-azure-ref: 20230616T134858Z-e9cpcvumt12x1b6qatc65zs5qs00000002pg00000000ff85
+access-control-allow-origin: *
+x-cache: Hit from cloudfront
+via: 1.1 546c7d402795f607dedd15c21228ca4c.cloudfront.net (CloudFront)
+x-amz-cf-pop: MAD56-P4
+x-amz-cf-id: yiUsNmwuaCK6k06yrHNhrpi-FVLTWWEVJA8x8rD9pbUDvABr5AAl2w==
+age: 71252
+X-Firefox-Spdy: h2
+ ctid 2 uncompressed-len 0 net-response-time-onstart 23 net-response-time-onstop 23 alt-data 1;21642,javascript/moz-script-bytecode-20230424185118-8l alt-data-from-child 1  &

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<o:ServicesCatalogResults xmlns:o="urn:schemas-microsoft-com:office:office">
+ <o:WebConnectInfo>
+  <o:WebConnect o:ConnectMechanism="3" o:Height="390" o:Width="480" />
+ </o:WebConnectInfo>
+ <o:ServicesCatalog>
+  <o:Service o:Id="WLINBOX_SKYDRIVE" o:SortOrder="2" o:Capabilities="8289" o:ConnectMechanism="1" o:ServiceOwner="2" o:SupportsMultiple="false" o:IsManaged="false" o:IsRemovable="false" o:SupportsNonRoaming="false">
+   <o:Name>OneDrive</o:Name>
+   <o:Description>Almacenamiento en l√≠nea gratuito. Almacene, tenga acceso y comparta miles de documentos en OneDrive.</o:Description>
+   <o:ServiceUrl>https://g.live.com/8seskydrive/HomePageUrl</o:ServiceUrl>
+   <o:CapabilitiesMetadata>&lt;Metadata&gt;&lt;Type&gt;Skydrive&lt;/Type&gt;&lt;DefaultFolderRelativePath&gt;/^.Documents&lt;/DefaultFolderRelativePath&gt;&lt;DefaultCreateRelativePath&gt;/^.Documents&lt;/DefaultCreateRelativePath&gt;&lt;KeyTip&gt;K&lt;/KeyTip&gt;&lt;RegularExpression&gt;^(?:https)://(?:[a-zA-Z0-9])+\.(?:[a-zA-Z0-9\-]+\.)*docs(?:-df|-bvt|-s3|-gd|-current|-dev)*\.live(?:-tst)?\.net(?:\:[0-9]*)?/([A-Fa-f0-9]*)(?:\/.*)?$&lt;/RegularExpression&gt;&lt;/Metadata&gt;</o:CapabilitiesMetadata>
+   <o:Thumbnails>
+    <o:ThumbnailUrl o:Size="16">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_16_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="32">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_32_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="48">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_48_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="64">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_64_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="80">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_80_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="96">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_96_2.png</o:ThumbnailUrl>
+   </o:Thumbnails>
+  </o:Service>
+  <o:Service o:Id="WLMOUNTED_SKYDRIVE" o:SortOrder="2" o:Capabilities="8193" o:ConnectMechanism="4" o:ServiceOwner="2" o:SupportsMultiple="true" o:IsManaged="false" o:IsRemovable="true" o:SupportsNonRoaming="false">
+   <o:Name>OneDrive</o:Name>
+   <o:Description>OneDrive (montado)</o:Description>
+   <o:ServiceUrl>https://g.live.com/8seskydrive/HomePageUrl</o:ServiceUrl>
+   <o:CapabilitiesMetadata>&lt;Metadata&gt;&lt;Type&gt;Skydrive&lt;/Type&gt;&lt;DefaultFolderRelativePath&gt;/^.Documents&lt;/DefaultFolderRelativePath&gt;&lt;DefaultCreateRelativePath&gt;/^.Documents&lt;/DefaultCreateRelativePath&gt;&lt;KeyTip&gt;K&lt;/KeyTip&gt;&lt;RegularExpression&gt;^(?:https)://(?:[a-zA-Z0-9])+\.(?:[a-zA-Z0-9\-]+\.)*docs(?:-df|-bvt|-s3|-gd|-current|-dev)*\.live(?:-tst)?\.net(?:\:[0-9]*)?/([A-Fa-f0-9]*)(?:\/.*)?$&lt;/RegularExpression&gt;&lt;/Metadata&gt;</o:CapabilitiesMetadata>
+   <o:Thumbnails>
+    <o:ThumbnailUrl o:Size="16">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_16_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="32">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_32_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="48">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_48_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="64">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_64_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="80">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_80_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="96">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_96_2.png</o:ThumbnailUrl>
+   </o:Thumbnails>
+  </o:Service>
+  <o:Service o:Id="O365_SHAREPOINT" o:SortOrder="3" o:Capabilities="4196355" o:ConnectMechanism="2" o:ServiceOwner="1" o:SupportsMultiple="false" o:IsManaged="false" o:IsRemovable="false" o:SupportsNonRoaming="false">
+   <o:Name>OneDrive para la Empresa</o:Name>
+   <o:Description>SharePoint hospedado en Office 365</o:Description>
+   <o:ServiceUrl>https://www.microsoft.com/en-us/office365/online-software.aspx</o:ServiceUrl>
+   <o:CapabilitiesMetadata>&lt;Metadata&gt;&lt;Type&gt;SharePoint Online&lt;/Type&gt;&lt;KeyTip&gt;U&lt;/KeyTip&gt;&lt;/Metadata&gt;</o:CapabilitiesMetadata>
+   <o:Thumbnails>
+    <o:ThumbnailUrl o:Size="16">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_16_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="32">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_32_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="48">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_48_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="64">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_64_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="80">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_80_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="96">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_96_2.png</o:ThumbnailUrl>
+   </o:Thumbnails>
+  </o:Service>
+  <o:Service o:Id="ONPREM_SHAREPOINT" o:SortOrder="4" o:Capabilities="2051" o:ConnectMechanism="0" o:ServiceOwner="0" o:SupportsMultiple="false" o:IsManaged="false" o:IsRemovable="false" o:SupportsNonRoaming="false">
+   <o:Name>OneDrive para la Empresa</o:Name>
+   <o:Description>SharePoint hospedado en local</o:Description>
+   <o:ServiceUrl>https://products.office.com/en-US/sharepoint/</o:ServiceUrl>
+   <o:CapabilitiesMetadata>&lt;Metadata&gt;&lt;Type&gt;SharePoint&lt;/Type&gt;&lt;KeyTip&gt;U&lt;/KeyTip&gt;&lt;DefaultFolderRelativePath&gt;/Documents&lt;/DefaultFolderRelativePath&gt;&lt;/Metadata&gt;</o:CapabilitiesMetadata>
+   <o:Thumbnails>
+    <o:ThumbnailUrl o:Size="16">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_16_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="32">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_32_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="48">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_48_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="64">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_64_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="80">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_80_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="96">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_96_2.png</o:ThumbnailUrl>
+   </o:Thumbnails>
+  </o:Service>
+  <o:Service o:Id="ONPREM_SHAREPOINT_OTHER" o:SortOrder="4" o:Capabilities="1" o:ConnectMechanism="0" o:ServiceOwner="0" o:SupportsMultiple="false" o:IsManaged="false" o:IsRemovable="false" o:SupportsNonRoaming="false">
+   <o:Name>Otros sitios SharePoint</o:Name>
+   <o:Description>Otros sitios SharePoint hospedados en local</o:Description>
+   <o:ServiceUrl>https://products.office.com/en-US/sharepoint/</o:ServiceUrl>
+   <o:CapabilitiesMetadata>&lt;Metadata&gt;&lt;Type&gt;SharePoint&lt;/Type&gt;&lt;KeyTip&gt;U&lt;/KeyTip&gt;&lt;HideIfEmpty&gt;true&lt;/HideIfEmpty&gt;&lt;/Metadata&gt;</o:CapabilitiesMetadata>
+   <o:Thumbnails>
+    <o:ThumbnailUrl o:Size="16">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_16_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="32">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_32_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="48">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_48_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="64">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_64_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="80">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_80_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="96">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_96_2.png</o:ThumbnailUrl>
+   </o:Thumbnails>
+  </o:Service>
+  <o:Service o:Id="OFFOPTIN_DOCSTORAGE_LIMITED" o:SortOrder="99" o:Capabilities="8193" o:ConnectMechanism="0" o:ServiceOwner="3" o:SupportsMultiple="true" o:IsManaged="false" o:IsRemovable="true" o:SupportsNonRoaming="false">
+   <o:Name>Almacenamiento de documentos de terceros</o:Name>
+   <o:Description>Almacenamiento de documentos de terceros</o:Description>
+   <o:ServiceUrl>https://www.office.com/</o:ServiceUrl>
+   <o:CapabilitiesMetadata>&lt;Metadata&gt;&lt;Type&gt;Third-Party&lt;/Type&gt;&lt;KeyTip&gt;P&lt;/KeyTip&gt;&lt;/Metadata&gt;</o:CapabilitiesMetadata>
+  </o:Service>
+  <o:Service o:Id="WLMOUNTED_CONNECT" o:SortOrder="99" o:Capabilities="4096" o:ConnectMechanism="4" o:ServiceOwner="2" o:SupportsMultiple="false" o:IsManaged="false" o:IsRemovable="true" o:SupportsNonRoaming="false">
+   <o:Name>Cuenta de Microsoft</o:Name>
+   <o:Description>Cuenta de Microsoft</o:Description>
+   <o:ServiceUrl>https://explore.live.com/home</o:ServiceUrl>
+   <o:Thumbnails>
+    <o:ThumbnailUrl o:Size="16">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/liveconnect_16_1.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="32">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/liveconnect_32_1.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="48">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/liveconnect_48_1.png</o:ThumbnailUrl>
+   </o:Thumbnails>
+  </o:Service>
+  <o:Service o:Id="WLMOUNTED_MARKETPLACE" o:SortOrder="99" o:Capabilities="8" o:ConnectMechanism="4" o:ServiceOwner="1" o:SupportsMultiple="false" o:IsManaged="false" o:IsRemovable="true" o:SupportsNonRoaming="false">
+   <o:Name>Tienda Office</o:Name>
+   <o:Description>Tienda Office (montada)</o:Description>
+   <o:ServiceUrl>https://www.office.com/</o:ServiceUrl>
+   <o:Thumbnails>
+    <o:ThumbnailUrl o:Size="16">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/officestore_16_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="32">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/officestore_32_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="48">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/officestore_48_2.png</o:ThumbnailUrl>
+   </o:Thumbnails>
+  </o:Service>
+  <o:Service o:Id="O365_SHAREPOINTGROUP" o:SortOrder="99" o:Capabilities="16384" o:ConnectMechanism="2" o:ServiceOwner="1" o:SupportsMultiple="false" o:IsManaged="false" o:IsRemovable="false" o:SupportsNonRoaming="false">
+   <o:Name>Office 365 SharePoint</o:Name>
+   <o:Description>Grupo de Office 365 SharePoint</o:Description>
+   <o:ServiceUrl>https://www.office.com/</o:ServiceUrl>
+   <o:CapabilitiesMetadata>&lt;Metadata&gt;&lt;Type&gt;SharePoint Online&lt;/Type&gt;&lt;KeyTip&gt;U&lt;/KeyTip&gt;&lt;/Metadata&gt;</o:CapabilitiesMetadata>
+   <o:Thumbnails>
+    <o:ThumbnailUrl o:Size="16">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_16_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="32">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_32_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="48">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_48_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="64">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_64_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="80">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_80_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="96">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_96_2.png</o:ThumbnailUrl>
+   </o:Thumbnails>
+  </o:Service>
+  <o:Service o:Id="O365MOUNTED_SHAREPOINTGROUP" o:SortOrder="99" o:Capabilities="16384" o:ConnectMechanism="5" o:ServiceOwner="1" o:SupportsMultiple="true" o:IsManaged="false" o:IsRemovable="true" o:SupportsNonRoaming="false">
+   <o:Name>Office 365 SharePoint</o:Name>
+   <o:Description>Grupo de Office 365 SharePoint (montado)</o:Description>
+   <o:ServiceUrl>https://www.office.com/</o:ServiceUrl>
+   <o:CapabilitiesMetadata>&lt;Metadata&gt;&lt;Type&gt;SharePoint Online&lt;/Type&gt;&lt;KeyTip&gt;U&lt;/KeyTip&gt;&lt;/Metadata&gt;</o:CapabilitiesMetadata>
+   <o:Thumbnails>
+    <o:ThumbnailUrl o:Size="16">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_16_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="32">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_32_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="48">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_48_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="64">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_64_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="80">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_80_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="96">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_96_2.png</o:ThumbnailUrl>
+   </o:Thumbnails>
+  </o:Service>
+  <o:Service o:Id="O365MOUNTED_SHAREPOINT" o:SortOrder="99" o:Capabilities="4196355" o:ConnectMechanism="5" o:ServiceOwner="1" o:SupportsMultiple="true" o:IsManaged="false" o:IsRemovable="true" o:SupportsNonRoaming="false">
+   <o:Name>OneDrive para la Empresa</o:Name>
+   <o:Description>OneDrive para la Empresa (montado)</o:Description>
+   <o:ServiceUrl>https://www.microsoft.com/en-us/office365/online-software.aspx</o:ServiceUrl>
+   <o:CapabilitiesMetadata>&lt;Metadata&gt;&lt;Type&gt;SharePoint Online&lt;/Type&gt;&lt;KeyTip&gt;U&lt;/KeyTip&gt;&lt;/Metadata&gt;</o:CapabilitiesMetadata>
+   <o:Thumbnails>
+    <o:ThumbnailUrl o:Size="16">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_16_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="32">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_32_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="48">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_48_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="64">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_64_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="80">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_80_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="96">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/onedrive_96_2.png</o:ThumbnailUrl>
+   </o:Thumbnails>
+  </o:Service>
+  <o:Service o:Id="ONPREM_SHAREPOINTGROUP" o:SortOrder="99" o:Capabilities="16384" o:ConnectMechanism="0" o:ServiceOwner="0" o:SupportsMultiple="false" o:IsManaged="false" o:IsRemovable="false" o:SupportsNonRoaming="false">
+   <o:Name>SharePoint</o:Name>
+   <o:Description>SharePoint hospedado en local</o:Description>
+   <o:ServiceUrl>https://www.office.com/</o:ServiceUrl>
+   <o:CapabilitiesMetadata>&lt;Metadata&gt;&lt;Type&gt;SharePoint&lt;/Type&gt;&lt;KeyTip&gt;U&lt;/KeyTip&gt;&lt;/Metadata&gt;</o:CapabilitiesMetadata>
+   <o:Thumbnails>
+    <o:ThumbnailUrl o:Size="16">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_16_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="32">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_32_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="48">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_48_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="64">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_64_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="80">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_80_2.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="96">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/sharepoint_96_2.png</o:ThumbnailUrl>
+   </o:Thumbnails>
+  </o:Service>
+  <o:Service o:Id="TP_DROPBOX" o:SortOrder="400" o:Capabilities="2097153" o:ConnectMechanism="6" o:ServiceOwner="3" o:SupportsMultiple="false" o:IsManaged="false" o:IsRemovable="true" o:SupportsNonRoaming="true">
+   <o:Name>Dropbox</o:Name>
+   <o:Description>Dropbox simplifica la forma de trabajar en equipo gracias a herramientas de colaboraci√≥n seguras y f√°ciles de usar y a la plataforma de sincronizaci√≥n de archivos m√°s r√°pida y confiable.</o:Description>
+   <o:ServiceUrl>https://www.dropbox.com/</o:ServiceUrl>
+   <o:Thumbnails>
+    <o:ThumbnailUrl o:Size="16">https://dropbox.com/static/images/wopi/ios-wopi-icon-16x16.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="32">https://dropbox.com/static/images/wopi/ios-wopi-icon-32x32.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="48">https://dropbox.com/static/images/wopi/ios-wopi-icon-48x48.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="64">https://dropbox.com/static/images/wopi/ios-wopi-icon-64x64.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="80">https://dropbox.com/static/images/wopi/ios-wopi-icon-80x80.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="96">https://dropbox.com/static/images/wopi/ios-wopi-icon-96x96.png</o:ThumbnailUrl>
+   </o:Thumbnails>
+   <o:Auth>
+    <o:BootStrapperUri>https://wopi.dropbox.com/wopibootstrapper</o:BootStrapperUri>
+    <o:ClientId>29dp5eh71izjx32</o:ClientId>
+    <o:Scope>
+    </o:Scope>
+    <o:RedirectUri>https://teams.microsoft.com/wopi/oauthcallback</o:RedirectUri>
+    <o:TrustedDomains>
+     <o:TrustedDomain>api.dropbox.com</o:TrustedDomain>
+     <o:TrustedDomain>api.dropboxapi.com</o:TrustedDomain>
+     <o:TrustedDomain>dropbox.com</o:TrustedDomain>
+     <o:TrustedDomain>wopi.dropbox.com</o:TrustedDomain>
+     <o:TrustedDomain>wopi-stage.dropbox.com</o:TrustedDomain>
+     <o:TrustedDomain>wopi-test.dropbox.com</o:TrustedDomain>
+    </o:TrustedDomains>
+   </o:Auth>
+  </o:Service>
+  <o:Service o:Id="TP_BOX" o:SortOrder="440" o:Capabilities="2097153" o:ConnectMechanism="6" o:ServiceOwner="3" o:SupportsMultiple="false" o:IsManaged="false" o:IsRemovable="true" o:SupportsNonRoaming="true">
+   <o:Name>Box</o:Name>
+   <o:Description>Box es una plataforma segura de gesti√≥n de contenidos y colaboraci√≥n que ayuda a los equipos y organizaciones a compartir, administrar y colaborar f√°cilmente en la informaci√≥n m√°s importante.</o:Description>
+   <o:ServiceUrl>https://www.box.com/</o:ServiceUrl>
+   <o:Thumbnails>
+    <o:ThumbnailUrl o:Size="16">https://s3-us-west-2.amazonaws.com/box-pics-pdx//ifs/data/public/office_integration/Logo%4016.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="32">https://s3-us-west-2.amazonaws.com/box-pics-pdx//ifs/data/public/office_integration/Logo%4032.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="48">https://s3-us-west-2.amazonaws.com/box-pics-pdx//ifs/data/public/office_integration/Logo%4048.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="64">https://s3-us-west-2.amazonaws.com/box-pics-pdx//ifs/data/public/office_integration/Logo%4064.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="80">https://s3-us-west-2.amazonaws.com/box-pics-pdx//ifs/data/public/office_integration/Logo%4080.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="96">https://s3-us-west-2.amazonaws.com/box-pics-pdx//ifs/data/public/office_integration/Logo%4096.png</o:ThumbnailUrl>
+   </o:Thumbnails>
+   <o:Auth>
+    <o:BootStrapperUri>https://account.box.com/api/wopibootstrapper</o:BootStrapperUri>
+    <o:ClientId>piiklhevf7rbou35l5271nqjh85496pu</o:ClientId>
+    <o:Scope />
+    <o:RedirectUri>https://teams.microsoft.com/wopi/oauthcallback</o:RedirectUri>
+    <o:TrustedDomains>
+     <o:TrustedDomain>account.box.com</o:TrustedDomain>
+     <o:TrustedDomain>api.box.com</o:TrustedDomain>
+     <o:TrustedDomain>app.box.com</o:TrustedDomain>
+     <o:TrustedDomain>ent.box.com</o:TrustedDomain>
+     <o:TrustedDomain>account.box-gov.com</o:TrustedDomain>
+     <o:TrustedDomain>api.box-gov.com</o:TrustedDomain>
+     <o:TrustedDomain>app.box-gov.com</o:TrustedDomain>
+     <o:TrustedDomain>ent.box-gov.com</o:TrustedDomain>
+    </o:TrustedDomains>
+   </o:Auth>
+  </o:Service>
+  <o:Service o:Id="TP_EGNYTE" o:SortOrder="530" o:Capabilities="2097153" o:ConnectMechanism="6" o:ServiceOwner="3" o:SupportsMultiple="false" o:IsManaged="false" o:IsRemovable="true" o:SupportsNonRoaming="true">
+   <o:Name>Egnyte</o:Name>
+   <o:Description>Obtener acceso, editar y compartir con seguridad contenido almacenado local o en la nube, en cualquier lugar, en cualquier momento y desde cualquier dispositivo.</o:Description>
+   <o:ServiceUrl>https://www.egnyte.com/</o:ServiceUrl>
+   <o:Thumbnails>
+    <o:ThumbnailUrl o:Size="16">https://us-partner-integrations.egnyte.com/msoffice/static/16x16.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="32">https://us-partner-integrations.egnyte.com/msoffice/static/32x32.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="48">https://us-partner-integrations.egnyte.com/msoffice/static/48x48.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="64">https://us-partner-integrations.egnyte.com/msoffice/static/64x64.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="80">https://us-partner-integrations.egnyte.com/msoffice/static/80x80.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="96">https://us-partner-integrations.egnyte.com/msoffice/static/96x96.png</o:ThumbnailUrl>
+   </o:Thumbnails>
+   <o:Auth>
+    <o:BootStrapperUri>https://us-partner-integrations.egnyte.com/msoffice/wopibootstrapper</o:BootStrapperUri>
+    <o:ClientId>d221f797-d1d1-4289-9a6d-d36812bc3bf1</o:ClientId>
+    <o:Scope>Egnyte.filesystem Egnyte.user</o:Scope>
+    <o:RedirectUri>https://teams.microsoft.com/wopi/oauthcallback</o:RedirectUri>
+    <o:TrustedDomains>
+     <o:TrustedDomain>us-partner-integrations.egnyte.com</o:TrustedDomain>
+     <o:TrustedDomain>egnyte.com</o:TrustedDomain>
+    </o:TrustedDomains>
+   </o:Auth>
+  </o:Service>
+  <o:Service o:Id="TP_EGNYTE_PLUS" o:SortOrder="530" o:Capabilities="35651585" o:ConnectMechanism="6" o:ServiceOwner="3" o:SupportsMultiple="false" o:IsManaged="false" o:IsRemovable="true" o:SupportsNonRoaming="true">
+   <o:Name>Egnyte (Preview)</o:Name>
+   <o:Description>Securely access, edit, and share content stored on-premises or in the cloud, anywhere, anytime, from any device.</o:Description>
+   <o:ServiceUrl>https://www.egnyte.com/</o:ServiceUrl>
+   <o:Thumbnails>
+    <o:ThumbnailUrl o:Size="16">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/partner/egnyte/egnyte_logo-16x16-1642071334.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="32">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/partner/egnyte/egnyte_logo-32x32-1642071334.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="48">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/partner/egnyte/egnyte_logo-48x48-1642071334.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="64">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/partner/egnyte/egnyte_logo-64x64-1642071334.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="80">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/partner/egnyte/egnyte_logo-80x80-1642071334.png</o:ThumbnailUrl>
+    <o:ThumbnailUrl o:Size="96">https://cdn.odc.officeapps.live.com/odc/stat/images/sm/partner/egnyte/egnyte_logo-96x96-1642071334.png</o:ThumbnailUrl>
+   </o:Thumbnails>
+   <o:Auth>
+    <o:BootStrapperUri>https://us-partner-integrations.egnyte.com/msoffice/wopibootstrapper?beta</o:BootStrapperUri>
+    <o:ClientId>d221f797-d1d1-4289-9a6d-d36812bc3bf1</o:ClientId>
+    <o:Scope>Egnyte.filesystem Egnyte.user</o:Scope>
+    <o:RedirectUri>https://teams.microsoft.com/wopi/oauthcallback</o:RedirectUri>
+    <o:TrustedDomains>
+     <o:TrustedDomain>us-partner-integrations.egnyte.com</o:TrustedDomain>
+     <o:TrustedDomain>partner-integrations.egnyte.com</o:TrustedDomain>
+    </o:TrustedDomains>
+   </o:Auth>
+  </o:Service>
+ </o:ServicesCatalog>
+</o:ServicesCatalogResults>¶úÊ˝}      dçDdçEE≤•kdçE   £    O^partitionKey=%28https%2Cmicrosoft.com%29,a,:https://odc.officeapps.live.com/odc/servicemanager/catalog?app=107&ver=16&schema=3&lcid=3082&syslcid=3082&uilcid=3082 necko:classified 1 strongly-framed 1 security-info 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BQUHAwIwCgYIKwYBBQUHAwEwPAYJKwYBBAGCNxUHBC8wLQYlKwYBBAGCNxUIh73XG4Hn60aCgZ0ujtAMh/DaHV2ChOVpgvOnPgIBZAIBJTCBrgYIKwYBBQUHAQEEgaEwgZ4wbQYIKwYBBQUHMAKGYWh0dHA6Ly93d3cubWljcm9zb2Z0LmNvbS9wa2lvcHMvY2VydHMvTWljcm9zb2Z0JTIwQXp1cmUlMjBUTFMlMjBJc3N1aW5nJTIwQ0ElMjAwNiUyMC0lMjB4c2lnbi5jcnQwLQYIKwYBBQUHMAGGIWh0dHA6Ly9vbmVvY3NwLm1pY3Jvc29mdC5jb20vb2NzcDAdBgNVHQ4EFgQUFYCmsDUTOtXJor0lixYuzAG2UbQwDgYDVR0PAQH/BAQDAgSwMIIBIgYDVR0RBIIBGTCCARWCF29kYy5vZmZpY2VhcHBzLmxpdmUuY29tghUqLm9mZmljZWFwcHMubGl2ZS5jb22CGyoub2Rjc20ub2ZmaWNlYXBwcy5saXZlLmNvbYIZb2Rjc20ub2ZmaWNlYXBwcy5saXZlLmNvbYIZKi5vZGMub2ZmaWNlYXBwcy5saXZlLmNvbYIYZGlzY292ZXJ5LmFwaS5vZmZpY2UubmV0ghpvZGMtZGYub2ZmaWNlYXBwcy5saXZlLmNvbYIcKi5vZGMtZGYub2ZmaWNlYXBwcy5saXZlLmNvbYIab2RjLWV1Lm9mZmljZWFwcHMubGl2ZS5jb22CDmhyZC5vZmZpY2UuY29tghAqLmhyZC5vZmZpY2UuY29tMAwGA1UdEwEB/wQCMAAwZAYDVR0fBF0wWzBZoFegVYZTaHR0cDovL3d3dy5taWNyb3NvZnQuY29tL3BraW9wcy9jcmwvTWljcm9zb2Z0JTIwQXp1cmUlMjBUTFMlMjBJc3N1aW5nJTIwQ0ElMjAwNi5jcmwwZgYDVR0gBF8wXTBRBgwrBgEEAYI3TIN9AQEwQTA/BggrBgEFBQcCARYzaHR0cDovL3d3dy5taWNyb3NvZnQuY29tL3BraW9wcy9Eb2NzL1JlcG9zaXRvcnkuaHRtMAgGBmeBDAECAjAfBgNVHSMEGDAWgBTVwWc6wqOd9HdSW1kSOCnmVWi7pTAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEwDQYJKoZIhvcNAQEMBQADggIB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 request-method GET request-Origin https://teams.microsoft.com response-head HTTP/2 200 OK
+content-type: text/xml; charset=utf-8
+vary: Origin
+server: Microsoft-IIS/10.0
+x-correlationid: e0e4f480-e2be-44cf-a12e-f5f345dc8b10
+x-usersessionid: e0e4f480-e2be-44cf-a12e-f5f345dc8b10
+x-officefe: OdcFE_IN_90
+x-officeversion: 16.0.16612.30550
+x-officecluster: uks-000.odc.officeapps.live.com
+p3p: CP="CAO DSP COR ADMa DEV CONi TELi CUR PSA PSD TAI IVDi OUR SAMi BUS DEM NAV STA UNI COM INT PHY ONL FIN PUR"
+access-control-allow-origin: https://teams.microsoft.com
+access-control-allow-headers: Accept,Authorization,Content-Type,X-IDCRL_ACCEPTED,X-Ms-Diagnostics,odata-version,X-Office-AudienceGroup,X-Office-Application,X-Office-Platform,X-Office-UserType,X-Office-Version,Origin,X-CorrelationId,X-WOPI-SessionContext,X-Office-IncrementalSync,SOAPAction,SubstrateBearer,X-UserTenantID,Enlightened-Hrd-Client
+access-control-expose-headers: X-CorrelationId,X-Ms-Diagnostics,X-OfficeCluster,Retry-After
+timing-allow-origin: https://teams.microsoft.com
+access-control-allow-methods: GET, OPTIONS
+x-office-cacheduration: 10080
+x-powered-by: ASP.NET
+x-content-type-options: nosniff
+date: Sat, 17 Jun 2023 09:39:16 GMT
+content-length: 23576
+X-Firefox-Spdy: h2
+ original-response-headers content-type: text/xml; charset=utf-8
+vary: Origin
+server: Microsoft-IIS/10.0
+x-correlationid: e0e4f480-e2be-44cf-a12e-f5f345dc8b10
+x-usersessionid: e0e4f480-e2be-44cf-a12e-f5f345dc8b10
+x-officefe: OdcFE_IN_90
+x-officeversion: 16.0.16612.30550
+x-officecluster: uks-000.odc.officeapps.live.com
+p3p: CP="CAO DSP COR ADMa DEV CONi TELi CUR PSA PSD TAI IVDi OUR SAMi BUS DEM NAV STA UNI COM INT PHY ONL FIN PUR"
+access-control-allow-origin: https://teams.microsoft.com
+access-control-allow-headers: Accept,Authorization,Content-Type,X-IDCRL_ACCEPTED,X-Ms-Diagnostics,odata-version,X-Office-AudienceGroup,X-Office-Application,X-Office-Platform,X-Office-UserType,X-Office-Version,Origin,X-CorrelationId,X-WOPI-SessionContext,X-Office-IncrementalSync,SOAPAction,SubstrateBearer,X-UserTenantID,Enlightened-Hrd-Client
+access-control-expose-headers: X-CorrelationId,X-Ms-Diagnostics,X-OfficeCluster,Retry-After
+timing-allow-origin: https://teams.microsoft.com
+access-control-allow-methods: GET, OPTIONS
+x-office-cacheduration: 10080
+x-powered-by: ASP.NET
+x-content-type-options: nosniff
+date: Sat, 17 Jun 2023 09:39:16 GMT
+content-length: 23576
+X-Firefox-Spdy: h2
+ ctid 1 uncompressed-len 0 net-response-time-onstart 307 net-response-time-onstop 330   \
